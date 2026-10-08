@@ -74,7 +74,7 @@ def collect():
         if slug != "index.html":
             p.setdefault("kind", "post")
         pages.append(p)
-    for sub in ("teachers", "research"):
+    for sub in ("teachers", "research", "credits"):
         for f in sorted(glob.glob(os.path.join(ROOT, "_src", sub, "*.html"))):
             p = load(f); slug = os.path.basename(f)
             p["out"] = sub + "/" + slug
@@ -158,7 +158,7 @@ def footer(prefix, absolute=False):
             f'<a href="mailto:{FORM_EMAIL}">{FORM_EMAIL}</a> or use our <a href="{base}contact.html">contact form</a>.</p></section>'
             f'<p class="flinks"><a href="{base}terms.html">Terms</a> &middot; <a href="{base}privacy.html">Privacy</a> &middot; '
             f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}contact.html">Contact</a> &middot; '
-            f'<a href="{base}about.html">About</a> &middot; <a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
+            f'<a href="{base}about.html">About</a> &middot; <a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
             f'<p class="legal">&copy; 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
             f'<p>Original educational content about elephants. All text and illustrations are original.</p></footer>{beacon}</body></html>')
 
@@ -289,7 +289,7 @@ def main():
     pages = collect()
     by_out = {p["out"]: p for p in pages}
     os.makedirs(os.path.join(ROOT, "blog"), exist_ok=True)
-    for sub in ("teachers", "research"):
+    for sub in ("teachers", "research", "credits"):
         os.makedirs(os.path.join(ROOT, sub), exist_ok=True)
     for p in pages:
         htmltext = render(p, by_out)

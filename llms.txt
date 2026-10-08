@@ -52,3 +52,4 @@ The content is general education. Population figures are the latest published es
 - [Privacy policy](https://tuskwise.com/privacy.html): data controller, what is collected (contact form only), hosting, analytics status and cookies
 - [Terms of Use](https://tuskwise.com/terms.html): terms of use: who you contract with, no professional advice, liability and governing law
 - [TuskWise blog](https://tuskwise.com/blog/): index of answer first articles
+- [Photo credits](https://tuskwise.com/credits/): author, source page and licence for every photograph on TuskWise
