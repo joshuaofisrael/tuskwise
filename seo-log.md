@@ -54,6 +54,22 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Added two ivory tusks to the elephant mark (header SVG, favicon.svg, logo.png, og-image.png via _og.py, supersampled).
 - Page HTML change is only the inline logo SVG; sitemap and content unchanged, so no IndexNow re-ping.
 
+## 2026-10-08 ~12:35 London: custom domain https://tuskwise.com/ live (one push, commit 64745bc)
+- DNS verified with dig (1.1.1.1 and 8.8.8.8): apex A 185.199.108.153/.109/.110/.111; www CNAME joshuaofisrael.github.io.
+  Namecheap order 216171348 (bought by Personal assistant).
+- SITE_URL = https://tuskwise.com/; build wrote CNAME (tuskwise.com). Canonicals, sitemap, robots Sitemap line, llms.txt,
+  OG and JSON-LD URLs all on https://tuskwise.com/; no github.io references in built output. 404 links now root relative.
+- Pages custom domain set via API (PUT pages cname). Certificate approved within minutes (Let's Encrypt, CN=tuskwise.com,
+  covers www); https_enforced = true.
+- Live: https://tuskwise.com/ 200; http -> https 301; www (http and https) -> https://tuskwise.com/ 301 (paths kept);
+  old https://joshuaofisrael.github.io/tuskwise/* 301 to the same path on tuskwise.com. All 24 sitemap URLs, sitemap.xml,
+  robots.txt, llms.txt, key file https://tuskwise.com/e431c862123afb33b22681739bf0f4c8.txt: 200. Footer contact + LLC on 25/25.
+- robots.txt is now at the host root, so it is authoritative for crawlers (the github.io limitation is gone).
+- IndexNow (host tuskwise.com, 24 URLs, 12:32 BST): api.indexnow.org HTTP 202, bing.com/indexnow HTTP 202.
+- FormSubmit: one approved test from https://tuskwise.com/contact.html at 12:33 BST; response "This form needs
+  Activation. We've sent you an email containing an 'Activate Form' link." Personal assistant to click.
+- Next: GSC Domain property for tuskwise.com (Joshua), Cloudflare beacon token for tuskwise.com, Bing Webmaster Tools.
+
 ## Scorecard
 | Date | Window | Impressions | Clicks | CTR | Avg pos | Indexed pages | Top100/20/10/3 queries | Growing pages | Declining pages | Conversions |
 |---|---|---|---|---|---|---|---|---|---|---|
