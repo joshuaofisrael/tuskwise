@@ -4,8 +4,8 @@ Free, original educational site about elephants (African savanna, African forest
 Operated by Joshua Israel Ventures LLC.
 
 - Repo: https://github.com/joshuaofisrael/tuskwise
-- Live (until the domain is live): https://joshuaofisrael.github.io/tuskwise/
-- Planned domain: tuskwise.com (do not switch until it is bought and DNS is set)
+- Live: https://tuskwise.com/ (custom domain since 8 Oct 2026; the github.io path redirects here)
+- Domain: tuskwise.com (Namecheap; apex A records to GitHub Pages, www CNAME to joshuaofisrael.github.io)
 - Hosting: GitHub Pages, deploy from branch `main`, folder `/`.
 - Source: hand written HTML fragments in `_src/pages` and `_src/blog`, rendered by `python3 _build.py`
   into static HTML at the repo root (built HTML is committed). `_config.yml` keeps `_src`, `_build.py`,

@@ -8,7 +8,7 @@ Run `python3 _build.py`, commit, push, set the domain in Settings > Pages, then 
 import json, os, re, html, glob, datetime
 from urllib.parse import urlparse
 
-SITE_URL = "https://joshuaofisrael.github.io/tuskwise/"   # <- the ONLY place the base URL lives
+SITE_URL = "https://tuskwise.com/"   # <- the ONLY place the base URL lives
 SITE_NAME = "TuskWise"
 LEGAL = "Joshua Israel Ventures LLC"
 GSC_TOKEN = ""          # Google Search Console verification token (meta tag); Joshua generates it in GSC
