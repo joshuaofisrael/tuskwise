@@ -81,7 +81,8 @@ def url_for(out):
     return SITE_URL + out
 
 def org(include_logo=True):
-    o = {"@type": "Organization", "name": SITE_NAME, "url": SITE_URL, "legalName": LEGAL}
+    o = {"@type": "Organization", "@id": SITE_URL + "#organization", "name": LEGAL, "legalName": LEGAL, "url": SITE_URL,
+         "email": FORM_EMAIL, "brand": {"@type": "Brand", "name": SITE_NAME}}
     if include_logo:
         o["logo"] = SITE_URL + "logo.png"
     return o
@@ -146,10 +147,11 @@ def footer(prefix, absolute=False):
                   "data-cf-beacon='{\"token\": \"" + CF_BEACON_TOKEN + "\"}'></script><!-- End Cloudflare Web Analytics -->")
     return (f'<footer>{PRINTS}<section class="contact-us" id="contact-us"><h2>Contact us</h2><p>Questions, corrections or ideas? Email '
             f'<a href="mailto:{FORM_EMAIL}">{FORM_EMAIL}</a> or use our <a href="{base}contact.html">contact form</a>.</p></section>'
-            f'<p class="flinks"><a href="{base}about.html">About</a> &middot; <a href="{base}contact.html">Contact</a> &middot; '
-            f'<a href="{base}privacy.html">Privacy</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
-            f'<p>{SITE_NAME}: original educational content about elephants. All text and illustrations are original.</p>'
-            f'<p>Operated by {LEGAL}</p><p>&copy; 2026 Joshua Israel</p></footer>{beacon}</body></html>')
+            f'<p class="flinks"><a href="{base}terms.html">Terms</a> &middot; <a href="{base}privacy.html">Privacy</a> &middot; '
+            f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}contact.html">Contact</a> &middot; '
+            f'<a href="{base}about.html">About</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
+            f'<p class="legal">&copy; 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
+            f'<p>Original educational content about elephants. All text and illustrations are original.</p></footer>{beacon}</body></html>')
 
 def render(p, by_out):
     out = p["out"]; depth = out.count("/"); prefix = "../" * depth
@@ -161,7 +163,8 @@ def render(p, by_out):
     # JSON-LD
     if out == "index.html":
         parts.append(ld({"@context": "https://schema.org", "@type": "WebSite", "name": SITE_NAME, "url": SITE_URL,
-                         "description": p["description"], "publisher": org()}))
+                         "@id": SITE_URL + "#website",
+                         "description": p["description"], "publisher": {"@id": SITE_URL + "#organization"}}))
         parts.append(ld({"@context": "https://schema.org", **org()}))
     elif not noindex:
         if kind in ("article", "post"):
@@ -172,7 +175,7 @@ def render(p, by_out):
                              "mainEntityOfPage": {"@type": "WebPage", "@id": canonical}, "inLanguage": "en"}))
         else:
             parts.append(ld({"@context": "https://schema.org", "@type": p.get("schema", "WebPage"), "name": p["h1"],
-                             "description": p["description"], "url": canonical, "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": SITE_URL},
+                             "description": p["description"], "url": canonical, "isPartOf": {"@type": "WebSite", "@id": SITE_URL + "#website", "name": SITE_NAME, "url": SITE_URL},
                              "publisher": org()}))
         crumbs = [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL}]
         if out.startswith("blog/") and out != "blog/index.html":
