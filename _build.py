@@ -93,6 +93,16 @@ def nice_date(d):
     dt = datetime.date.fromisoformat(d)
     return f"{dt.day} {dt.strftime('%B %Y')}"
 
+# Small decorative doodle (original): elephant footprints and a leaf, hidden from assistive tech.
+PRINTS = ('<svg class="prints" viewBox="0 0 132 24" aria-hidden="true" focusable="false">'
+          '<defs><g id="fp"><ellipse cx="0" cy="2" rx="7" ry="6.5" fill="#a7c0d3"/>'
+          '<circle cx="-4.5" cy="-5.5" r="1.8" fill="#a7c0d3"/><circle cx="0" cy="-7" r="1.8" fill="#a7c0d3"/>'
+          '<circle cx="4.5" cy="-5.5" r="1.8" fill="#a7c0d3"/></g></defs>'
+          '<use href="#fp" x="12" y="13"/><use href="#fp" x="38" y="11"/>'
+          '<path d="M56 18c0-8 6-13 14-13 0 8-6 13-14 13z" fill="#6cbf6a"/><path d="M58 16l9-8" stroke="#2a7a3b" stroke-width="1.5" stroke-linecap="round"/>'
+          '<path d="M76 18c0-8 6-13 14-13 0 8-6 13-14 13z" fill="#ff9c84"/>'
+          '<use href="#fp" x="104" y="11"/><use href="#fp" x="122" y="13"/></svg>')
+
 def head(p, canonical, prefix, noindex=False, absolute=False):
     title = p["title"]; desc = p["description"]
     css = (BASE_PATH + "style.css") if absolute else (prefix + "style.css")
@@ -106,7 +116,9 @@ def head(p, canonical, prefix, noindex=False, absolute=False):
         h.append('<meta name="robots" content="noindex">')
     else:
         h.append(f'<link rel="canonical" href="{canonical}">')
-    h.append(f'<link rel="stylesheet" href="{css}"><link rel="icon" href="{fav}" type="image/svg+xml">')
+    font = (BASE_PATH if absolute else prefix) + "fonts/fredoka-600-latin.woff2"
+    h.append(f'<link rel="preload" href="{font}" as="font" type="font/woff2" crossorigin>'
+             f'<link rel="stylesheet" href="{css}"><link rel="icon" href="{fav}" type="image/svg+xml">')
     ogt = "article" if p.get("kind") in ("post", "article") else "website"
     h.append(f'<meta property="og:type" content="{ogt}"><meta property="og:site_name" content="{SITE_NAME}">'
              f'<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">'
@@ -132,7 +144,7 @@ def footer(prefix, absolute=False):
     if CF_BEACON_TOKEN:
         beacon = ("<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' "
                   "data-cf-beacon='{\"token\": \"" + CF_BEACON_TOKEN + "\"}'></script><!-- End Cloudflare Web Analytics -->")
-    return (f'<footer><section class="contact-us" id="contact-us"><h2>Contact us</h2><p>Questions, corrections or ideas? Email '
+    return (f'<footer>{PRINTS}<section class="contact-us" id="contact-us"><h2>Contact us</h2><p>Questions, corrections or ideas? Email '
             f'<a href="mailto:{FORM_EMAIL}">{FORM_EMAIL}</a> or use our <a href="{base}contact.html">contact form</a>.</p></section>'
             f'<p class="flinks"><a href="{base}about.html">About</a> &middot; <a href="{base}contact.html">Contact</a> &middot; '
             f'<a href="{base}privacy.html">Privacy</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
