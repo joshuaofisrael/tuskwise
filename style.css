@@ -33,3 +33,21 @@ figure.diagram{margin:1rem 0;text-align:center}figure.diagram svg{max-width:100%
 .contact-us{max-width:640px;margin:0 auto 1.1rem;background:#fff;border-radius:var(--r);padding:.9rem 1.1rem;font-size:1rem;box-shadow:var(--sh)}.contact-us h2{font-size:1.15rem;margin:.1rem 0 .3rem;color:#a8361d}.contact-us p{margin:0}
 @media(max-width:760px){.menu{display:block}nav{display:none;width:100%;flex-direction:column}nav a{padding:.45rem .7rem}body.open nav{display:flex}.hero{padding:1.3rem 1.1rem 1rem}.hero h1{font-size:1.8rem}.hero .doodle{width:96px}.related ul{columns:1}main{padding:1rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.onlyprint{display:none}
+/* PRINT */
+@media print{
+body{background:#fff;color:#000}
+header,.menu,nav,.crumbs,.jump,.ad-slot,.related,.prints,footer .contact-us,.flinks,form.contact,.noprint{display:none!important}
+main{max-width:none;padding:0}
+h1,h2,h3{color:#000}
+a{color:#000;text-decoration:none}
+.card,.tile,.postlist li,.tablewrap,.callout{background:#fff;box-shadow:none;border:1px solid #000;border-radius:0}
+.hero{background:#fff;box-shadow:none}
+.answer-key{display:block!important;break-before:page}
+.onlyprint{display:inline}
+table,th,td{border:1px solid #000}
+footer{background:#fff;color:#000;border-radius:0}
+.answer-key{border:2px solid #000}
+.sheet h2::before{display:none}
+}

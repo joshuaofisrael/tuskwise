@@ -35,6 +35,7 @@ NAV = [
     ("checklist", "Sanctuary Checklist", "elephant-sanctuary-checklist.html"),
     ("faq", "FAQ", "faq.html"),
     ("glossary", "Glossary", "glossary.html"),
+    ("teachers", "For Teachers", "teachers/index.html"),
     ("blog", "Blog", "blog/index.html"),
 ]
 
@@ -71,6 +72,12 @@ def collect():
         if slug != "index.html":
             p.setdefault("kind", "post")
         pages.append(p)
+    for sub in ("teachers", "research"):
+        for f in sorted(glob.glob(os.path.join(ROOT, "_src", sub, "*.html"))):
+            p = load(f); slug = os.path.basename(f)
+            p["out"] = sub + "/" + slug
+            p.setdefault("nav", "teachers")
+            pages.append(p)
     return pages
 
 def url_for(out):
@@ -149,9 +156,25 @@ def footer(prefix, absolute=False):
             f'<a href="mailto:{FORM_EMAIL}">{FORM_EMAIL}</a> or use our <a href="{base}contact.html">contact form</a>.</p></section>'
             f'<p class="flinks"><a href="{base}terms.html">Terms</a> &middot; <a href="{base}privacy.html">Privacy</a> &middot; '
             f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}contact.html">Contact</a> &middot; '
-            f'<a href="{base}about.html">About</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
+            f'<a href="{base}about.html">About</a> &middot; <a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
             f'<p class="legal">&copy; 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
             f'<p>Original educational content about elephants. All text and illustrations are original.</p></footer>{beacon}</body></html>')
+
+MLA_MON = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]
+
+def cite_box(p, canonical, prefix):
+    title = esc(p["h1"]); reviewed = p.get("modified", p["published"])
+    dt = datetime.date.fromisoformat(reviewed)
+    mon = dt.strftime("%B")
+    end = "" if title[-1:] in "?!" else "."
+    bare = canonical.replace("https://", "")
+    apa = f"{SITE_NAME}. ({dt.year}, {mon} {dt.day}). <i>{title}</i>{end} {canonical}"
+    mla = f"&ldquo;{title}{end}&rdquo; <i>{SITE_NAME}</i>, {LEGAL}, {dt.day} {MLA_MON[dt.month - 1]} {dt.year}, {bare}."
+    chi = f"{SITE_NAME}. &ldquo;{title}{end}&rdquo; {LEGAL}. Last modified {mon} {dt.day}, {dt.year}. {canonical}."
+    return (f'<section class="card cite" id="cite"><h2>Cite this page</h2>'
+            f'<p class="meta">Last reviewed {nice_date(reviewed)}. Suggested citations for students and teachers:</p>'
+            f'<p><b>APA</b><br>{apa}</p><p><b>MLA</b><br>{mla}</p><p><b>Chicago</b><br>{chi}</p>'
+            f'<p class="meta">Using a fact from a study? Cite the original paper too. The <a href="{prefix}research/index.html">research page</a> lists the peer reviewed papers behind TuskWise with DOIs.</p></section>')
 
 def render(p, by_out):
     out = p["out"]; depth = out.count("/"); prefix = "../" * depth
@@ -173,37 +196,57 @@ def render(p, by_out):
                              "datePublished": p["published"], "dateModified": p.get("modified", p["published"]),
                              "author": org(False), "publisher": org(),
                              "mainEntityOfPage": {"@type": "WebPage", "@id": canonical}, "inLanguage": "en"}))
+        elif kind == "learning":
+            lr = {"@context": "https://schema.org", "@type": "LearningResource", "name": p["h1"],
+                  "description": p["description"], "url": canonical, "inLanguage": "en", "isAccessibleForFree": True,
+                  "learningResourceType": p.get("lr_type", "lesson plan"),
+                  "educationalLevel": p.get("edu_level", "K-12"),
+                  "audience": {"@type": "EducationalAudience", "educationalRole": "teacher"},
+                  "publisher": org(), "dateModified": p.get("modified", p["published"])}
+            if p.get("lr_align"):
+                lr["educationalAlignment"] = [{"@type": "AlignmentObject", "alignmentType": "teaches",
+                    "educationalFramework": "NGSS", "targetName": c} for c in p["lr_align"]]
+            parts.append(ld(lr))
         else:
             parts.append(ld({"@context": "https://schema.org", "@type": p.get("schema", "WebPage"), "name": p["h1"],
                              "description": p["description"], "url": canonical, "isPartOf": {"@type": "WebSite", "@id": SITE_URL + "#website", "name": SITE_NAME, "url": SITE_URL},
                              "publisher": org()}))
         crumbs = [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL}]
-        if out.startswith("blog/") and out != "blog/index.html":
-            crumbs.append({"@type": "ListItem", "position": 2, "name": "Blog", "item": SITE_URL + "blog/"})
+        par = out.split("/")[0] + "/index.html"
+        if "/" in out and out != par and par in by_out:
+            crumbs.append({"@type": "ListItem", "position": 2, "name": by_out[par].get("crumb", by_out[par]["h1"]), "item": url_for(par)})
         crumbs.append({"@type": "ListItem", "position": len(crumbs) + 1, "name": p.get("crumb", p["h1"]), "item": canonical})
         parts.append(ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": crumbs}))
+    if p.get("ld_items"):
+        parts.append(ld({"@context": "https://schema.org", "@type": "ItemList", "name": p["h1"], "numberOfItems": len(p["ld_items"]),
+                         "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": it} for i, it in enumerate(p["ld_items"])]}))
     if p.get("faq"):
         parts.append(ld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in p["faq"]]}))
     parts.append("</head><body>")
     parts.append(header(p.get("nav", ""), prefix))
-    parts.append('<!-- AD SLOT: top banner (reserved, no ad code) --><div class="ad-slot" data-slot="top" hidden></div><main>')
+    noads = kind == "learning" or p.get("noads")
+    parts.append('<main>' if noads else '<!-- AD SLOT: top banner (reserved, no ad code) --><div class="ad-slot" data-slot="top" hidden></div><main>')
     # breadcrumb trail (visible)
     if out != "index.html" and not noindex:
         trail = f'<a href="{prefix}index.html">Home</a>'
-        if out.startswith("blog/") and out != "blog/index.html":
-            trail += f' &rsaquo; <a href="{prefix}blog/index.html">Blog</a>'
+        par = out.split("/")[0] + "/index.html"
+        if "/" in out and out != par and par in by_out:
+            trail += f' &rsaquo; <a href="{prefix}{par}">{esc(by_out[par].get("crumb", by_out[par]["h1"]))}</a>'
         trail += f' &rsaquo; <span>{esc(p.get("crumb", p["h1"]))}</span>'
         parts.append(f'<nav class="crumbs" aria-label="Breadcrumb">{trail}</nav>')
     if out != "index.html":
         parts.append(f'<h1>{esc(p["h1"])}</h1>')
         if kind in ("article", "post") and not noindex:
+            reviewed = p.get("modified", p["published"])
             if kind == "post":
                 parts.append(f'<p class="meta">Published {nice_date(p["published"])}'
                              + (f' &middot; Updated {nice_date(p["modified"])}' if p.get("modified") and p["modified"] != p["published"] else "")
-                             + f' &middot; By the {SITE_NAME} team</p>')
+                             + f' &middot; Last reviewed {nice_date(reviewed)} &middot; By the {SITE_NAME} team</p>')
             else:
-                parts.append(f'<p class="meta">Last updated {nice_date(p.get("modified", p["published"]))}</p>')
+                parts.append(f'<p class="meta">Last reviewed {nice_date(reviewed)}</p>')
+        if kind == "learning" and not noindex:
+            parts.append(f'<p class="meta">Last reviewed {nice_date(p.get("modified", p["published"]))} &middot; Free, no sign up, no ads</p>')
         if p.get("lead"):
             parts.append(f'<p class="lead">{p["lead"]}</p>')
     if "{{POSTS}}" in body:
@@ -224,7 +267,11 @@ def render(p, by_out):
     if p.get("sources"):
         src = "".join(f'<li><a href="{esc(u)}" rel="noopener">{esc(t)}</a></li>' for t, u in p["sources"])
         parts.append(f'<section class="sources"><h2>Sources</h2><ol>{src}</ol></section>')
-    parts.append('<!-- AD SLOT: in-content (reserved, no ad code) --><div class="ad-slot" data-slot="content-bottom" hidden></div></main>')
+    if kind in ("article", "post") and not noindex:
+        parts.append(cite_box(p, canonical, prefix))
+    if kind == "learning":
+        parts.append(f'<p class="meta">Free for classroom use. Printed from {SITE_URL}{"" if out == "index.html" else out.replace("index.html", "")} &middot; &copy; 2026 {LEGAL}.</p>')
+    parts.append('</main>' if noads else '<!-- AD SLOT: in-content (reserved, no ad code) --><div class="ad-slot" data-slot="content-bottom" hidden></div></main>')
     parts.append(footer(prefix))
     return "".join(parts)
 
@@ -240,6 +287,8 @@ def main():
     pages = collect()
     by_out = {p["out"]: p for p in pages}
     os.makedirs(os.path.join(ROOT, "blog"), exist_ok=True)
+    for sub in ("teachers", "research"):
+        os.makedirs(os.path.join(ROOT, sub), exist_ok=True)
     for p in pages:
         htmltext = render(p, by_out)
         open(os.path.join(ROOT, p["out"]), "w", encoding="utf-8").write(htmltext)
@@ -260,7 +309,7 @@ def main():
     rb = "User-agent: *\nAllow: /\n\n" + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots) + f"Sitemap: {SITE_URL}sitemap.xml\n"
     open(os.path.join(ROOT, "robots.txt"), "w").write(rb)
     # llms.txt
-    groups = {"guides": [], "tools": [], "blog": [], "optional": []}
+    groups = {"guides": [], "tools": [], "classroom": [], "blog": [], "optional": []}
     for p in pages:
         g = p.get("llms")
         if g:
@@ -273,7 +322,7 @@ def main():
     lt = [f"# {SITE_NAME}", "",
           f"> {SITE_NAME} is a free, original educational website about elephants: the African savanna elephant, the African forest elephant and the Asian elephant. It covers how to tell the species apart, anatomy, family life and behavior, intelligence and memory research, habitats and diet, conservation status and population estimates, and how to see elephants ethically in the wild. Every page cites reputable sources such as the IUCN, WWF, accredited zoos and peer reviewed studies. Operated by {LEGAL}.",
           "", "The content is general education. Population figures are the latest published estimates and are dated on each page.", ""]
-    for g, title in (("tools", "Tools"), ("guides", "Guides"), ("blog", "Blog"), ("optional", "Optional")):
+    for g, title in (("tools", "Tools"), ("guides", "Guides"), ("classroom", "Classroom"), ("blog", "Blog"), ("optional", "Optional")):
         if groups[g]:
             lt.append(f"## {title}")
             lt += [line(p) for p in groups[g]]
@@ -292,6 +341,29 @@ def main():
         t = open(os.path.join(ROOT, f), encoding="utf-8").read()
         if "\u2014" in t or "\u2013" in t:
             bad.append(f)
+    css_path = os.path.join(ROOT, "style.css")
+    css = open(css_path, encoding="utf-8").read()
+    marker = "/* PRINT */"
+    # .onlyprint hidden on screen via the print block below
+    base = css.split(marker)[0].rstrip() + "\n"
+    printcss = """/* PRINT */
+@media print{
+body{background:#fff;color:#000}
+header,.menu,nav,.crumbs,.jump,.ad-slot,.related,.prints,footer .contact-us,.flinks,form.contact,.noprint{display:none!important}
+main{max-width:none;padding:0}
+h1,h2,h3{color:#000}
+a{color:#000;text-decoration:none}
+.card,.tile,.postlist li,.tablewrap,.callout{background:#fff;box-shadow:none;border:1px solid #000;border-radius:0}
+.hero{background:#fff;box-shadow:none}
+.answer-key{display:block!important;break-before:page}
+.onlyprint{display:inline}
+table,th,td{border:1px solid #000}
+footer{background:#fff;color:#000;border-radius:0}
+.answer-key{border:2px solid #000}
+.sheet h2::before{display:none}
+}
+"""
+    open(css_path, "w", encoding="utf-8").write(base + printcss)
     if bad:
         raise SystemExit("em/en dash found in: " + ", ".join(bad))
     # JSON-LD parse check

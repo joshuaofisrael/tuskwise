@@ -28,6 +28,16 @@ The content is general education. Population figures are the latest published es
   - Sections: [Savanna elephant habitat](https://tuskwise.com/habitats.html#savanna), [Forest elephant habitat](https://tuskwise.com/habitats.html#forest), [Asian elephant habitat](https://tuskwise.com/habitats.html#asian), [Diet](https://tuskwise.com/habitats.html#diet), [Water](https://tuskwise.com/habitats.html#water), [Shrinking range](https://tuskwise.com/habitats.html#range-loss)
 - [Elephant intelligence and memory](https://tuskwise.com/intelligence.html): evidence on elephant cognition: mirror self recognition, cooperation, tool use, name like calls, voice discrimination, memory and its limits
 
+## Classroom
+- [Elephant adaptations worksheet](https://tuskwise.com/teachers/elephant-adaptations-worksheet.html): printable adaptations worksheet matching elephant structures to their functions, with a writing prompt and answer key
+- [Elephant anatomy label the diagram worksheet](https://tuskwise.com/teachers/elephant-anatomy-worksheet.html): printable label the diagram worksheet with an original elephant line drawing, word bank and answer key
+- [Elephant quiz with answer key](https://tuskwise.com/teachers/elephant-quiz.html): ten question elephant quiz with a printable answer key; every answer is sourced on TuskWise
+- [Elephant species fact sheet](https://tuskwise.com/teachers/elephant-species-fact-sheet.html): printable one page fact sheet comparing the three living elephant species
+- [Elephant worksheets and lesson plans](https://tuskwise.com/teachers/): free print friendly elephant worksheets, NGSS tagged lesson ideas for K to 12, a quiz with an answer key and a vocabulary list
+  - Sections: [Printables](https://tuskwise.com/teachers/#printables), [Lesson ideas](https://tuskwise.com/teachers/#lessons), [Quiz](https://tuskwise.com/teachers/#quiz), [Vocabulary](https://tuskwise.com/teachers/#vocabulary), [Classroom games](https://tuskwise.com/teachers/#games)
+- [Research papers for students and researchers](https://tuskwise.com/research/): 23 peer reviewed elephant studies with authors, year, journal and Crossref verified DOIs, grouped by theme, each linked to the TuskWise page that uses it
+  - Sections: [Species and evolution](https://tuskwise.com/research/#species-and-evolution), [Memory, families and leadership](https://tuskwise.com/research/#memory-families-and-leadership), [Intelligence and communication](https://tuskwise.com/research/#intelligence-and-communication), [Body, brain, sleep and reproduction](https://tuskwise.com/research/#body-brain-sleep-and-reproduction), [Ecology](https://tuskwise.com/research/#ecology), [Conservation and welfare](https://tuskwise.com/research/#conservation-and-welfare)
+
 ## Blog
 - [Do elephants really never forget?](https://tuskwise.com/blog/do-elephants-really-never-forget.html): what peer reviewed studies show about elephant memory (McComb 2001, 2011, 2014; Foley 2008) and its limits
 - [How long are elephants pregnant?](https://tuskwise.com/blog/how-long-are-elephants-pregnant.html): elephant gestation (about 22 months), how it is maintained (Lueders 2012), calf size, birth intervals and conservation implications
