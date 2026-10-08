@@ -40,11 +40,13 @@ NAV = [
 ]
 
 LOGO = ('<svg role="img" width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><title>TuskWise logo</title>'
-        '<ellipse cx="17" cy="28" rx="13" ry="16" fill="#7d8b99"/><ellipse cx="47" cy="28" rx="13" ry="16" fill="#7d8b99"/>'
-        '<circle cx="32" cy="26" r="15" fill="#b8c6d4"/>'
-        '<path d="M26 35C25 41 22 45 18 44" fill="none" stroke="#f1e6cf" stroke-width="3.6" stroke-linecap="round"/><path d="M38 35C39 41 42 45 46 44" fill="none" stroke="#f1e6cf" stroke-width="3.6" stroke-linecap="round"/>'
-        '<path d="M32 34c0 9-1 15 4 19 3 2 7 0 7-3" fill="none" stroke="#b8c6d4" stroke-width="7" stroke-linecap="round"/>'
-        '<circle cx="26" cy="24" r="2" fill="#15191e"/><circle cx="38" cy="24" r="2" fill="#15191e"/>'
+        '<rect width="64" height="64" rx="16" fill="#ffe566"/>'
+        '<ellipse cx="17" cy="28" rx="12" ry="15" fill="#1f4bff"/><ellipse cx="47" cy="28" rx="12" ry="15" fill="#ff3b7a"/>'
+        '<circle cx="32" cy="26" r="14" fill="#4d74ff"/>'
+        '<path d="M26 34C25 40 22 44 18 43" fill="none" stroke="#ffe566" stroke-width="3.4" stroke-linecap="round"/><path d="M38 34C39 40 42 44 46 43" fill="none" stroke="#ffe566" stroke-width="3.4" stroke-linecap="round"/>'
+        '<path d="M32 33c0 9-1 15 4 19 3 2 7 0 7-3" fill="none" stroke="#1a1464" stroke-width="6" stroke-linecap="round"/>'
+        '<circle cx="26" cy="24" r="2" fill="#16182a"/><circle cx="38" cy="24" r="2" fill="#16182a"/>'
+        '<circle cx="31" cy="32" r="2.2" fill="#ff3b7a"/>'
         '</svg>')
 
 def esc(s):
@@ -103,12 +105,12 @@ def nice_date(d):
 
 # Small decorative doodle (original): elephant footprints and a leaf, hidden from assistive tech.
 PRINTS = ('<svg class="prints" viewBox="0 0 132 24" aria-hidden="true" focusable="false">'
-          '<defs><g id="fp"><ellipse cx="0" cy="2" rx="7" ry="6.5" fill="#a7c0d3"/>'
-          '<circle cx="-4.5" cy="-5.5" r="1.8" fill="#a7c0d3"/><circle cx="0" cy="-7" r="1.8" fill="#a7c0d3"/>'
-          '<circle cx="4.5" cy="-5.5" r="1.8" fill="#a7c0d3"/></g></defs>'
+          '<defs><g id="fp"><ellipse cx="0" cy="2" rx="7" ry="6.5" fill="#1f4bff"/>'
+          '<circle cx="-4.5" cy="-5.5" r="1.8" fill="#ff3b7a"/><circle cx="0" cy="-7" r="1.8" fill="#ffe566"/>'
+          '<circle cx="4.5" cy="-5.5" r="1.8" fill="#1f4bff"/></g></defs>'
           '<use href="#fp" x="12" y="13"/><use href="#fp" x="38" y="11"/>'
-          '<path d="M56 18c0-8 6-13 14-13 0 8-6 13-14 13z" fill="#6cbf6a"/><path d="M58 16l9-8" stroke="#2a7a3b" stroke-width="1.5" stroke-linecap="round"/>'
-          '<path d="M76 18c0-8 6-13 14-13 0 8-6 13-14 13z" fill="#ff9c84"/>'
+          '<path d="M56 18c0-8 6-13 14-13 0 8-6 13-14 13z" fill="#ff3b7a"/><path d="M58 16l9-8" stroke="#1a1464" stroke-width="1.5" stroke-linecap="round"/>'
+          '<path d="M76 18c0-8 6-13 14-13 0 8-6 13-14 13z" fill="#ffe566"/>'
           '<use href="#fp" x="104" y="11"/><use href="#fp" x="122" y="13"/></svg>')
 
 def head(p, canonical, prefix, noindex=False, absolute=False):
@@ -355,6 +357,7 @@ h1,h2,h3{color:#000}
 a{color:#000;text-decoration:none}
 .card,.tile,.postlist li,.tablewrap,.callout{background:#fff;box-shadow:none;border:1px solid #000;border-radius:0}
 .hero{background:#fff;box-shadow:none}
+figure.photo img,.hero-photo{box-shadow:none;border-radius:0}
 .answer-key{display:block!important;break-before:page}
 .onlyprint{display:inline}
 table,th,td{border:1px solid #000}
