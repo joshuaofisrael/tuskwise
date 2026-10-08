@@ -44,7 +44,11 @@ impressions; update the population post when the IUCN savanna elephant status re
   https://joshuaofisrael.github.io/tuskwise/. Planned domain tuskwise.com (no CNAME yet; build writes CNAME
   automatically once SITE_URL is a non github.io host). OG image and logo regenerated (_og.py).
 - Old github.io path no longer serves (GitHub does not redirect Pages paths after a repo rename); the old URLs were
-  only hours old. IndexNow re-pinged with all new sitemap URLs (results below).
+  only hours old. Live check at /tuskwise/: all 24 sitemap URLs + robots, sitemap, llms.txt, key file 200; brand
+  and footer contact verified on 25/25 HTML pages.
+- IndexNow (all 24 new sitemap URLs, 11:58 BST): api.indexnow.org HTTP 202, bing.com/indexnow HTTP 202.
+- FormSubmit: one approved test submission 11:58 BST; response "This form needs Activation" (activation email sent
+  to joshuaofisrael@gmail.com; Personal assistant to click).
 
 ## Scorecard
 | Date | Window | Impressions | Clicks | CTR | Avg pos | Indexed pages | Top100/20/10/3 queries | Growing pages | Declining pages | Conversions |
