@@ -41,9 +41,10 @@ NAV = [
 LOGO = ('<svg role="img" width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><title>TuskWise logo</title>'
         '<ellipse cx="17" cy="28" rx="13" ry="16" fill="#7d8b99"/><ellipse cx="47" cy="28" rx="13" ry="16" fill="#7d8b99"/>'
         '<circle cx="32" cy="26" r="15" fill="#b8c6d4"/>'
+        '<path d="M26 35C25 41 22 45 18 44" fill="none" stroke="#f1e6cf" stroke-width="3.6" stroke-linecap="round"/><path d="M38 35C39 41 42 45 46 44" fill="none" stroke="#f1e6cf" stroke-width="3.6" stroke-linecap="round"/>'
         '<path d="M32 34c0 9-1 15 4 19 3 2 7 0 7-3" fill="none" stroke="#b8c6d4" stroke-width="7" stroke-linecap="round"/>'
         '<circle cx="26" cy="24" r="2" fill="#15191e"/><circle cx="38" cy="24" r="2" fill="#15191e"/>'
-        '<path d="M24 36c-2 4-5 6-8 6" fill="none" stroke="#f1e6cf" stroke-width="3" stroke-linecap="round"/></svg>')
+        '</svg>')
 
 def esc(s):
     return html.escape(s, quote=True)

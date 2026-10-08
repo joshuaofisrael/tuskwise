@@ -50,6 +50,10 @@ impressions; update the population post when the IUCN savanna elephant status re
 - FormSubmit: one approved test submission 11:58 BST; response "This form needs Activation" (activation email sent
   to joshuaofisrael@gmail.com; Personal assistant to click).
 
+## 2026-10-08 ~12:05 London: logo tusks
+- Added two ivory tusks to the elephant mark (header SVG, favicon.svg, logo.png, og-image.png via _og.py, supersampled).
+- Page HTML change is only the inline logo SVG; sitemap and content unchanged, so no IndexNow re-ping.
+
 ## Scorecard
 | Date | Window | Impressions | Clicks | CTR | Avg pos | Indexed pages | Top100/20/10/3 queries | Growing pages | Declining pages | Conversions |
 |---|---|---|---|---|---|---|---|---|---|---|
