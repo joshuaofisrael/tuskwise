@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""ElephantWise static site builder. Renders _src/ fragments into static HTML at the repo root.
+"""TuskWise static site builder. Renders _src/ fragments into static HTML at the repo root.
 
-To move to a custom domain: change SITE_URL below (one line), add a CNAME file with the bare domain,
-run `python3 _build.py`, commit, push, then ping IndexNow (./indexnow.sh).
+To move to the custom domain (planned: tuskwise.com): change SITE_URL below to "https://tuskwise.com/" (one line).
+The build then writes the CNAME file itself (and deletes it while SITE_URL is a github.io URL).
+Run `python3 _build.py`, commit, push, set the domain in Settings > Pages, then ping IndexNow (./indexnow.sh).
 """
 import json, os, re, html, glob, datetime
 from urllib.parse import urlparse
 
-SITE_URL = "https://joshuaofisrael.github.io/elephantwise/"   # <- the ONLY place the base URL lives
-SITE_NAME = "ElephantWise"
+SITE_URL = "https://joshuaofisrael.github.io/tuskwise/"   # <- the ONLY place the base URL lives
+SITE_NAME = "TuskWise"
 LEGAL = "Joshua Israel Ventures LLC"
 GSC_TOKEN = ""          # Google Search Console verification token (meta tag); Joshua generates it in GSC
 CF_BEACON_TOKEN = ""    # Cloudflare Web Analytics beacon token; empty = no beacon emitted
@@ -16,7 +17,7 @@ INDEXNOW_KEY = "e431c862123afb33b22681739bf0f4c8"
 FORM_EMAIL = "joshuaofisrael@gmail.com"
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-BASE_PATH = urlparse(SITE_URL).path or "/"   # "/elephantwise/" now, "/" on a custom domain
+BASE_PATH = urlparse(SITE_URL).path or "/"   # "/tuskwise/" now, "/" on a custom domain
 OG_IMAGE = SITE_URL + "og-image.png"
 
 NAV = [
@@ -37,7 +38,7 @@ NAV = [
     ("blog", "Blog", "blog/index.html"),
 ]
 
-LOGO = ('<svg role="img" width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><title>ElephantWise logo</title>'
+LOGO = ('<svg role="img" width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><title>TuskWise logo</title>'
         '<ellipse cx="17" cy="28" rx="13" ry="16" fill="#7d8b99"/><ellipse cx="47" cy="28" rx="13" ry="16" fill="#7d8b99"/>'
         '<circle cx="32" cy="26" r="15" fill="#b8c6d4"/>'
         '<path d="M32 34c0 9-1 15 4 19 3 2 7 0 7-3" fill="none" stroke="#b8c6d4" stroke-width="7" stroke-linecap="round"/>'
@@ -212,7 +213,7 @@ def render(p, by_out):
     return "".join(parts)
 
 def notfound():
-    p = {"out": "404.html", "title": "Page Not Found | ElephantWise", "description": "This page wandered off with the herd."}
+    p = {"out": "404.html", "title": "Page Not Found | TuskWise", "description": "This page wandered off with the herd."}
     b = BASE_PATH
     return (head(p, "", "", noindex=True, absolute=True) + "</head><body>" + header("", "", absolute=True) +
             '<main><h1>This page wandered off with the herd</h1><p>We could not find that page. Try the '
@@ -263,6 +264,12 @@ def main():
             lt.append("")
     open(os.path.join(ROOT, "llms.txt"), "w").write("\n".join(lt))
     open(os.path.join(ROOT, INDEXNOW_KEY + ".txt"), "w").write(INDEXNOW_KEY)
+    host = urlparse(SITE_URL).hostname or ""
+    cname = os.path.join(ROOT, "CNAME")
+    if host.endswith("github.io"):
+        if os.path.exists(cname): os.remove(cname)
+    else:
+        open(cname, "w").write(host + "\n")
     # dash check on generated user facing text
     bad = []
     for f in [p["out"] for p in pages] + ["404.html", "llms.txt"]:

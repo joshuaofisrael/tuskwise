@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Ping IndexNow for ElephantWise. Usage: ./indexnow.sh URL [URL...]  (no args = all sitemap URLs)
+# Ping IndexNow for TuskWise. Usage: ./indexnow.sh URL [URL...]  (no args = all sitemap URLs)
 # SITE is read from _build.py so a domain switch needs no edit here.
 KEY=e431c862123afb33b22681739bf0f4c8
 SITE=$(python3 -c "import re;print(re.search(r'SITE_URL = \"([^\"]+)\"',open('$(dirname "$0")/_build.py').read()).group(1))")

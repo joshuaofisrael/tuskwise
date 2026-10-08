@@ -1,4 +1,4 @@
-# ElephantWise SEO log
+# TuskWise SEO log
 
 ## 2026-10-08: v1 launch (no Search Console data yet)
 Built from scratch following /workspace/animal-sites/BRIEF.md and SNAKE-BOT-PLAYBOOK.md (mirrors snakewise:
@@ -37,7 +37,14 @@ impressions; update the population post when the IUCN savanna elephant status re
   (mailto) + LLC line on 25/25 live pages; 30/30 crawler UA checks 200.
 - IndexNow (all 24 sitemap URLs): api.indexnow.org HTTP 202, bing.com/indexnow HTTP 200.
 - Note: on github.io the host root robots.txt (joshuaofisrael.github.io/robots.txt) is 404, which crawlers treat as
-  allow all; our /elephantwise/robots.txt becomes authoritative only once a custom domain is live.
+  allow all; our /tuskwise/robots.txt becomes authoritative only once a custom domain is live.
+
+## 2026-10-08 ~12:00 London: rebrand to TuskWise (approved via Personal assistant)
+- Site renamed (formerly the first name, see git history); repo renamed to joshuaofisrael/tuskwise; SITE_URL now
+  https://joshuaofisrael.github.io/tuskwise/. Planned domain tuskwise.com (no CNAME yet; build writes CNAME
+  automatically once SITE_URL is a non github.io host). OG image and logo regenerated (_og.py).
+- Old github.io path no longer serves (GitHub does not redirect Pages paths after a repo rename); the old URLs were
+  only hours old. IndexNow re-pinged with all new sitemap URLs (results below).
 
 ## Scorecard
 | Date | Window | Impressions | Clicks | CTR | Avg pos | Indexed pages | Top100/20/10/3 queries | Growing pages | Declining pages | Conversions |

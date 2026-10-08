@@ -5,3 +5,4 @@ exclude:
   - seo-log.md
   - README.md
   - indexnow.sh
+  - _og.py
