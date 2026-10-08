@@ -87,3 +87,5 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Nav "For Teachers", footer link, and homepage tiles for Teachers and Research. Sitemap 32 URLs; llms.txt has a new Classroom section.
 - Target queries: elephant worksheet for 3rd grade, elephant adaptations lesson plan, elephant anatomy worksheet, elephant quiz with answer key, elephant research papers.
 - outreach/ (targets.csv, directories.md, pinterest-plan.md, email-template.md) is in the _config.yml exclude list and not published.
+- IndexNow (32 sitemap URLs: new teacher and research pages plus all pages changed by the nav, cite box and Last reviewed date), 14:45 BST: api.indexnow.org HTTP 200, bing.com/indexnow HTTP 200.
+- Outreach files moved out of the public repo to /workspace/animal-sites/elephants/outreach/ (commits 3c6c988 and 2b1243d); outreach/ is now in .gitignore. They are still in git history at 364fa23.
