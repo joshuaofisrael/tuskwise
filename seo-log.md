@@ -76,3 +76,14 @@ impressions; update the population post when the IUCN savanna elephant status re
 | 2026-10-08 | 7d | n/a (no GSC yet) | n/a | n/a | n/a | 23 URLs + llms.txt in sitemap | n/a | n/a | n/a | n/a |
 | | 28d | | | | | | | | | |
 | | 90d | | | | | | | | | |
+
+## 2026-10-08: Education campaign, step 1 (teachers hub, research page, cite boxes). Commit d5a33a1
+- New: /teachers/ hub, 4 printables (species fact sheet, anatomy label the diagram with an original SVG, adaptations worksheet, quiz with answer key),
+  NGSS lesson ideas by grade band (1-LS1-2, 3-LS2-1, 3-LS4-3, 4-LS1-1, MS-LS2-2, HS-LS2-8, HS-LS4-5, all checked against nextgenscience.org), vocabulary
+  linked to the glossary, and a "Classroom games: coming soon" spot (/games/ was 404 at build time). /research/ lists 23 papers; every DOI was checked one at a time on the Crossref API.
+- Fix: Hart et al. 2001 DOI on intelligence.html was wrong (10.1006/anbe.2001.1811 points to a raptor paper). Corrected to 10.1006/anbe.2001.1815.
+- Template: a "Last reviewed" date plus a Cite this page box (APA, MLA, Chicago) on every article and blog post; LearningResource JSON-LD (educationalLevel,
+  NGSS AlignmentObject) on teacher pages; ItemList of ScholarlyArticle on /research/; no ad slots on teacher or research pages; print CSS is black on white with chrome hidden.
+- Nav "For Teachers", footer link, and homepage tiles for Teachers and Research. Sitemap 32 URLs; llms.txt has a new Classroom section.
+- Target queries: elephant worksheet for 3rd grade, elephant adaptations lesson plan, elephant anatomy worksheet, elephant quiz with answer key, elephant research papers.
+- outreach/ (targets.csv, directories.md, pinterest-plan.md, email-template.md) is in the _config.yml exclude list and not published.

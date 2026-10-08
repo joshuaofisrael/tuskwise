@@ -6,3 +6,4 @@ exclude:
   - README.md
   - indexnow.sh
   - _og.py
+  - outreach
