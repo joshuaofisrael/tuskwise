@@ -21,7 +21,7 @@ OG_IMAGE = SITE_URL + "og-image.png"
 
 NAV = [
     ("home", "Home", "index.html"),
-    ("compare", "Compare Species", "african-vs-asian-elephant.html"),
+    ("compare", "Species Compared", "african-vs-asian-elephant.html"),
     ("savanna", "Savanna Elephant", "african-savanna-elephant.html"),
     ("forest", "Forest Elephant", "african-forest-elephant.html"),
     ("asian", "Asian Elephant", "asian-elephant.html"),
@@ -31,6 +31,7 @@ NAV = [
     ("habitats", "Habitats & Diet", "habitats.html"),
     ("conservation", "Conservation", "conservation.html"),
     ("viewing", "Ethical Viewing", "ethical-viewing.html"),
+    ("checklist", "Sanctuary Checklist", "elephant-sanctuary-checklist.html"),
     ("faq", "FAQ", "faq.html"),
     ("glossary", "Glossary", "glossary.html"),
     ("blog", "Blog", "blog/index.html"),
