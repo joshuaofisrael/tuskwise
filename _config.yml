@@ -1,0 +1,7 @@
+# GitHub Pages (Jekyll) settings: plain HTML is served as is; these source/ops files are not published.
+exclude:
+  - _build.py
+  - _src
+  - seo-log.md
+  - README.md
+  - indexnow.sh
