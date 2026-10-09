@@ -1,0 +1,99 @@
+<!--meta
+{
+  "title": "Savanna or Forest?: African vs Asian Elephant Sorting Game | TuskWise",
+  "description": "Savanna or Forest? is a free sorting quiz: read the clues and choose African savanna, African forest or Asian elephant. Practice traits from the TuskWise species comparison.",
+  "h1": "Savanna or Forest?",
+  "short": "Savanna or Forest?",
+  "crumb": "Savanna or Forest?",
+  "nav": "games",
+  "kind": "game",
+  "game_name": "Savanna or Forest?",
+  "game_genre": "Educational sorting quiz",
+  "teaches": "How to tell African savanna, African forest and Asian elephants apart by ears, tusks, trunk tip, size and habitat",
+  "noads": true,
+  "published": "2026-10-09",
+  "modified": "2026-10-09",
+  "lead": "Three living elephant species (or species groups) look different once you know the clues. Read each card, then choose African savanna, African forest or Asian elephant. Every answer shows a short fact from our comparison guide.",
+  "related": ["african-vs-asian-elephant.html", "african-savanna-elephant.html", "african-forest-elephant.html", "asian-elephant.html", "games/index.html"]
+}
+-->
+<div class="gbar"><span>Card <b id="qn">1</b>/8</span><span>Score <b id="sc">0</b></span><span>Best <b id="bt">0</b></span></div>
+<div class="qcard" aria-live="polite">
+<p class="feat" id="qf"></p>
+<div id="qb">
+<button type="button" class="btn" data-a="savanna">African savanna</button>
+<button type="button" class="btn" data-a="forest">African forest</button>
+<button type="button" class="btn alt" data-a="asian">Asian elephant</button>
+</div>
+</div>
+<div class="fcard" id="fc" hidden aria-live="polite"></div>
+<p style="text-align:center"><button type="button" class="btn" id="nx" hidden>Next</button></p>
+<section class="card"><h2>What this game teaches</h2>
+<ul>
+<li>African savanna elephants have the largest ears and both sexes usually grow tusks.</li>
+<li>African forest elephants are smaller, with straighter, more downward tusks and rounder ears.</li>
+<li>Asian elephants have smaller ears, a single finger-like tip on the trunk, and tusks mainly in some males.</li>
+</ul>
+<p>Source: the TuskWise <a href="@/african-vs-asian-elephant.html">African vs Asian elephant comparison</a>. Keyboard: S savanna, F forest, A Asian, N next. No sound. Best score is stored only in your browser (localStorage key twSortBest).</p>
+</section>
+<p class="gnote">Games are original works &copy; 2026 Joshua Israel Ventures LLC.</p>
+<script>
+(() => {
+  const D = [
+    {a:"savanna", f:"Largest living land animal; huge triangular ears that can cover the shoulders; both sexes usually have tusks.", n:"African savanna elephant", link:"african-savanna-elephant.html"},
+    {a:"forest", f:"Lives in Central African rainforests; smaller than the savanna species; tusks are thinner and point more downward.", n:"African forest elephant", link:"african-forest-elephant.html"},
+    {a:"asian", f:"One finger-like tip at the end of the trunk (African elephants have two); ears are smaller and more rectangular.", n:"Asian elephant", link:"asian-elephant.html"},
+    {a:"savanna", f:"Often called Loxodonta africana; open grasslands, woodlands and deserts across much of sub-Saharan Africa.", n:"African savanna elephant", link:"african-savanna-elephant.html"},
+    {a:"asian", f:"Males may grow tusks; many females have small tushes or none. Twin domes on the head are a classic look.", n:"Asian elephant", link:"asian-elephant.html"},
+    {a:"forest", f:"Sometimes called the gardener of the Congo Basin because it disperses many rainforest tree seeds.", n:"African forest elephant", link:"african-forest-elephant.html"},
+    {a:"asian", f:"Range spans about 13 countries from India and Sri Lanka through mainland Southeast Asia to Borneo.", n:"Asian elephant", link:"asian-elephant.html"},
+    {a:"savanna", f:"Ear shape is often compared to the outline of the African continent; used for heat loss as well as hearing.", n:"African savanna elephant", link:"african-savanna-elephant.html"},
+    {a:"forest", f:"Listed as Critically Endangered; denser forest cover makes counts harder than for open-country herds.", n:"African forest elephant", link:"african-forest-elephant.html"},
+    {a:"asian", f:"Skin often looks drier and more wrinkled; a convex or twin-domed forehead differs from the flatter African profile.", n:"Asian elephant", link:"asian-elephant.html"},
+    {a:"savanna", f:"Bulls can weigh over 6,000 kg; social life centres on female-led families while adult males are often alone or in bachelor groups.", n:"African savanna elephant", link:"african-savanna-elephant.html"},
+    {a:"forest", f:"Prefer fruit when available and help regenerate forest by moving seeds far from parent trees.", n:"African forest elephant", link:"african-forest-elephant.html"}
+  ];
+  const $ = (i) => document.getElementById(i), K = "twSortBest";
+  let best = +localStorage.getItem(K) || 0, deck, i, score, ans;
+  $("bt").textContent = best;
+  const labels = {savanna:"African savanna elephant", forest:"African forest elephant", asian:"Asian elephant"};
+  function start() {
+    deck = D.slice().sort(() => Math.random() - 0.5).slice(0, 8);
+    i = 0; score = 0; $("sc").textContent = 0; show();
+  }
+  function show() {
+    const q = deck[i]; ans = false;
+    $("qn").textContent = i + 1;
+    $("qf").textContent = "Clues: " + q.f;
+    $("fc").hidden = true; $("nx").hidden = true; $("qb").hidden = false;
+  }
+  function pick(a) {
+    if (ans) return; ans = true;
+    const q = deck[i], ok = a === q.a;
+    if (ok) { score++; $("sc").textContent = score; }
+    $("fc").innerHTML = (ok ? "✅ Correct! " : "❌ Not this time. ") +
+      "This describes the <b>" + q.n + "</b>. <a href=\"../../" + q.link + "\">Read the species page</a> or the <a href=\"../../african-vs-asian-elephant.html\">full comparison</a>.";
+    $("fc").hidden = false; $("qb").hidden = true;
+    const last = i === deck.length - 1;
+    $("nx").textContent = last ? "Play again" : "Next card";
+    $("nx").hidden = false;
+    if (last) {
+      if (score > best) { best = score; localStorage.setItem(K, best); $("bt").textContent = best; }
+      $("fc").innerHTML += "<br><b>Round over: " + score + "/8.</b>";
+    }
+  }
+  $("qb").onclick = (e) => {
+    const b = e.target.closest("button[data-a]");
+    if (b) pick(b.dataset.a);
+  };
+  $("nx").onclick = () => { if (i === deck.length - 1) start(); else { i++; show(); } };
+  addEventListener("keydown", (e) => {
+    const k = e.key.toLowerCase();
+    if (k === "s") pick("savanna");
+    else if (k === "f") pick("forest");
+    else if (k === "a") pick("asian");
+    else if (k === "n" && ans) $("nx").click();
+  });
+  start();
+})();
+</script>

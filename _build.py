@@ -36,6 +36,7 @@ NAV = [
     ("faq", "FAQ", "faq.html"),
     ("glossary", "Glossary", "glossary.html"),
     ("teachers", "For Teachers", "teachers/index.html"),
+    ("games", "Games", "games/index.html"),
     ("blog", "Blog", "blog/index.html"),
 ]
 
@@ -80,6 +81,21 @@ def collect():
             p["out"] = sub + "/" + slug
             p.setdefault("nav", "teachers")
             pages.append(p)
+    # Games hub + per-game folders (games/index.html and games/<slug>/index.html)
+    games_src = os.path.join(ROOT, "_src", "games")
+    for f in sorted(glob.glob(os.path.join(games_src, "*.html"))):
+        p = load(f); slug = os.path.basename(f)
+        p["out"] = "games/" + slug
+        p.setdefault("nav", "games")
+        p.setdefault("noads", True)
+        pages.append(p)
+    for f in sorted(glob.glob(os.path.join(games_src, "*", "index.html"))):
+        p = load(f)
+        rel = os.path.relpath(f, os.path.join(ROOT, "_src"))
+        p["out"] = rel.replace("\\", "/")
+        p.setdefault("nav", "games")
+        p.setdefault("noads", True)
+        pages.append(p)
     return pages
 
 def url_for(out):
@@ -158,7 +174,7 @@ def footer(prefix, absolute=False):
             f'<a href="mailto:{FORM_EMAIL}">{FORM_EMAIL}</a> or use our <a href="{base}contact.html">contact form</a>.</p></section>'
             f'<p class="flinks"><a href="{base}terms.html">Terms</a> &middot; <a href="{base}privacy.html">Privacy</a> &middot; '
             f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}contact.html">Contact</a> &middot; '
-            f'<a href="{base}about.html">About</a> &middot; <a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
+            f'<a href="{base}about.html">About</a> &middot; <a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}games/index.html">Games</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
             f'<p class="legal">&copy; 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
             f'<p>Original educational content about elephants. All text and illustrations are original.</p></footer>{beacon}</body></html>')
 
@@ -209,6 +225,29 @@ def render(p, by_out):
                 lr["educationalAlignment"] = [{"@type": "AlignmentObject", "alignmentType": "teaches",
                     "educationalFramework": "NGSS", "targetName": c} for c in p["lr_align"]]
             parts.append(ld(lr))
+        elif kind == "game":
+            pub = org()
+            parts.append(ld({"@context": "https://schema.org", "@graph": [
+                {"@type": "WebPage", "@id": canonical + "#page", "url": canonical, "name": p["h1"] + " | " + SITE_NAME,
+                 "description": p["description"], "inLanguage": "en",
+                 "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": SITE_URL},
+                 "publisher": pub, "mainEntity": {"@id": canonical + "#game"}},
+                {"@type": "VideoGame", "@id": canonical + "#game", "name": p.get("game_name", p["h1"]),
+                 "url": canonical, "description": p["description"],
+                 "genre": p.get("game_genre", "Educational game"), "gamePlatform": "Web browser",
+                 "applicationCategory": "Game", "operatingSystem": "Any", "playMode": "SinglePlayer",
+                 "isAccessibleForFree": True, "inLanguage": "en",
+                 "teaches": p.get("teaches", p["description"]),
+                 "author": org(False), "publisher": pub, "copyrightHolder": org(False), "copyrightYear": 2026}]}))
+        elif kind == "games-hub":
+            items = [{"@type": "ListItem", "position": i + 1, "url": it["url"], "name": it["name"]}
+                     for i, it in enumerate(p.get("game_list", []))]
+            parts.append(ld({"@context": "https://schema.org", "@type": "CollectionPage",
+                             "@id": canonical + "#page", "url": canonical, "name": p["h1"],
+                             "description": p["description"], "inLanguage": "en",
+                             "publisher": org(),
+                             "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": SITE_URL},
+                             "mainEntity": {"@type": "ItemList", "itemListElement": items}}))
         else:
             parts.append(ld({"@context": "https://schema.org", "@type": p.get("schema", "WebPage"), "name": p["h1"],
                              "description": p["description"], "url": canonical, "isPartOf": {"@type": "WebSite", "@id": SITE_URL + "#website", "name": SITE_NAME, "url": SITE_URL},
@@ -289,8 +328,12 @@ def main():
     pages = collect()
     by_out = {p["out"]: p for p in pages}
     os.makedirs(os.path.join(ROOT, "blog"), exist_ok=True)
-    for sub in ("teachers", "research", "credits"):
+    for sub in ("teachers", "research", "credits", "games"):
         os.makedirs(os.path.join(ROOT, sub), exist_ok=True)
+    for p in pages:
+        d = os.path.dirname(os.path.join(ROOT, p["out"]))
+        if d:
+            os.makedirs(d, exist_ok=True)
     for p in pages:
         htmltext = render(p, by_out)
         open(os.path.join(ROOT, p["out"]), "w", encoding="utf-8").write(htmltext)

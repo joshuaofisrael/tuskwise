@@ -1,0 +1,111 @@
+<!--meta
+{
+  "title": "Matriarch's Footsteps: Elephant Herd Memory Game | TuskWise",
+  "description": "Matriarch's Footsteps is a free herd-memory game: watch the matriarch's path light up, repeat it, and learn how elephant families follow a wise leader. No sign-up, no ads.",
+  "h1": "Matriarch's Footsteps",
+  "short": "Matriarch's Footsteps",
+  "crumb": "Matriarch's Footsteps",
+  "nav": "games",
+  "kind": "game",
+  "game_name": "Matriarch's Footsteps",
+  "game_genre": "Memory path",
+  "teaches": "How elephant herds follow a matriarch and use spatial memory for routes to water and food",
+  "noads": true,
+  "published": "2026-10-09",
+  "modified": "2026-10-09",
+  "lead": "The matriarch knows the way to water. Watch her footsteps light up, then tap the same pads in order. Each round grows longer, just as a calf learns routes by following the herd.",
+  "related": ["behavior.html", "intelligence.html", "games/index.html", "teachers/index.html"]
+}
+-->
+<div class="gbar"><span>Round <b id="rn">1</b></span><span>Score <b id="sc">0</b></span><span>Best <b id="bt">0</b></span><button type="button" class="btn alt" id="go">Start</button></div>
+<div class="pathboard" id="board" aria-label="Footstep pads"></div>
+<div class="fcard" id="fc" aria-live="polite">Press Start, watch the path, then tap the pads in the same order. Keyboard: number keys 1 to 9 match the pads left to right, top to bottom.</div>
+<section class="card"><h2>What this game teaches</h2>
+<ul>
+<li>Elephant families are led by an older female called the matriarch.</li>
+<li>Herds remember routes to waterholes and seasonal food over many years.</li>
+<li>Calves learn by following: path memory is a life skill, not a party trick.</li>
+</ul>
+<p>Sources: our <a href="@/behavior.html">behavior guide</a> and <a href="@/intelligence.html">intelligence and memory</a> page. There is no sound. Your best score is saved only in your browser (localStorage key twFootBest).</p>
+</section>
+<p class="gnote">Games are original works &copy; 2026 Joshua Israel Ventures LLC.</p>
+<script>
+(() => {
+  const $ = (i) => document.getElementById(i);
+  const K = "twFootBest";
+  const FACTS = [
+    "Matriarchs are usually the oldest breeding female in the family.",
+    "Herds use low rumbles to stay in touch when they cannot see each other.",
+    "Spatial memory helps elephants find water in dry seasons.",
+    "Calves stay close to mothers and allomothers for years while they learn routes."
+  ];
+  let best = +localStorage.getItem(K) || 0, seq = [], step = 0, score = 0, round = 1, lock = true, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  $("bt").textContent = best;
+  const board = $("board");
+  for (let i = 0; i < 9; i++) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "pathpad";
+    b.dataset.i = i;
+    b.setAttribute("aria-label", "Pad " + (i + 1));
+    b.onclick = () => tap(i);
+    board.appendChild(b);
+  }
+  const pads = [...board.children];
+  function delay(ms) { return new Promise((r) => setTimeout(r, reduce ? Math.min(ms, 180) : ms)); }
+  async function flash(i, cls) {
+    pads[i].classList.add(cls || "lit");
+    await delay(reduce ? 220 : 420);
+    pads[i].classList.remove("lit", "ok", "bad");
+  }
+  async function playSeq() {
+    lock = true;
+    $("fc").textContent = "Watch the matriarch...";
+    await delay(reduce ? 200 : 450);
+    for (const i of seq) {
+      await flash(i, "lit");
+      await delay(reduce ? 80 : 160);
+    }
+    step = 0;
+    lock = false;
+    $("fc").textContent = "Your turn: tap the same pads in order.";
+  }
+  function nextRound() {
+    seq.push(Math.floor(Math.random() * 9));
+    $("rn").textContent = round;
+    playSeq();
+  }
+  async function tap(i) {
+    if (lock) return;
+    if (i === seq[step]) {
+      await flash(i, "ok");
+      step++;
+      if (step === seq.length) {
+        score += seq.length;
+        $("sc").textContent = score;
+        lock = true;
+        const fact = FACTS[Math.floor(Math.random() * FACTS.length)];
+        $("fc").innerHTML = "✅ Path remembered! <b>Herd fact:</b> " + fact;
+        if (score > best) { best = score; localStorage.setItem(K, best); $("bt").textContent = best; }
+        round++;
+        await delay(reduce ? 500 : 900);
+        nextRound();
+      }
+    } else {
+      lock = true;
+      await flash(i, "bad");
+      $("fc").innerHTML = "❌ The herd went another way. Score <b>" + score + "</b>. Press Start to try again. Tip: read more about matriarchs on our <a href=\"../../behavior.html\">behavior guide</a>.";
+      if (score > best) { best = score; localStorage.setItem(K, best); $("bt").textContent = best; }
+    }
+  }
+  $("go").onclick = () => {
+    seq = []; step = 0; score = 0; round = 1;
+    $("sc").textContent = 0; $("rn").textContent = 1;
+    nextRound();
+  };
+  addEventListener("keydown", (e) => {
+    const n = +e.key;
+    if (n >= 1 && n <= 9) tap(n - 1);
+  });
+})();
+</script>
