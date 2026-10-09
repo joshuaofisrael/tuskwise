@@ -95,3 +95,4 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Why highest EV: new indexable interactive URLs + classroom link from teachers hub; matches animal-sites GAMES-BRIEF and mentor SnakeWise pattern.
 - Result: Pages status built; live HTTP 200 on hub + 3 games + CREDITS.md; IndexNow api.indexnow.org 200 and bing.com 200.
 - Commit: 749f33b
+- 2026-10-09 11:12 London: daily fact article published: /blog/do-elephants-have-names-for-each-other.html (Pardo et al. 2024 Nat Ecol Evol 10.1038/s41559-024-02420-w; Poole 2005 Nature; Stoeger 2012 Curr Biol; Soltis 2010 Zoo Biol; all DOIs Crossref verified). Sitemap, blog index, llms.txt updated; IndexNow pinged.
