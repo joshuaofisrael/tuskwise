@@ -96,3 +96,4 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Result: Pages status built; live HTTP 200 on hub + 3 games + CREDITS.md; IndexNow api.indexnow.org 200 and bing.com 200.
 - Commit: 749f33b
 - 2026-10-09 11:12 London: daily fact article published: /blog/do-elephants-have-names-for-each-other.html (Pardo et al. 2024 Nat Ecol Evol 10.1038/s41559-024-02420-w; Poole 2005 Nature; Stoeger 2012 Curr Biol; Soltis 2010 Zoo Biol; all DOIs Crossref verified). Sitemap, blog index, llms.txt updated; IndexNow pinged.
+- 2026-10-11 01:20 London: daily fact article published: /blog/can-elephants-recognize-themselves-in-a-mirror.html (Plotnik, de Waal and Reiss 2006 PNAS 10.1073/pnas.0608062103; Povinelli 1989 J Comp Psychol; Gallup 1970 Science; Reiss and Marino 2001 PNAS; all DOIs Crossref verified). Sitemap, blog index, llms.txt updated; IndexNow pinged.
