@@ -350,7 +350,7 @@ def main():
     open(os.path.join(ROOT, "sitemap.xml"), "w").write(sm)
     # robots
     bots = ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "GPTBot", "PerplexityBot", "Perplexity-User", "ClaudeBot",
-            "Claude-SearchBot", "Claude-User", "Google-Extended", "Applebot", "Applebot-Extended", "DuckAssistBot", "Amazonbot"]
+            "Claude-SearchBot", "Claude-User", "Google-Extended", "Applebot", "Applebot-Extended", "DuckAssistBot", "Amazonbot", "anthropic-ai", "CCBot", "Bytespider", "Meta-ExternalAgent", "cohere-ai"]
     rb = "User-agent: *\nAllow: /\n\n" + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots) + f"Sitemap: {SITE_URL}sitemap.xml\n"
     open(os.path.join(ROOT, "robots.txt"), "w").write(rb)
     # llms.txt
