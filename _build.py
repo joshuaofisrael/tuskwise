@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 SITE_URL = "https://tuskwise.com/"   # <- the ONLY place the base URL lives
 SITE_NAME = "TuskWise"
 LEGAL = "Joshua Israel Ventures LLC"
-GSC_TOKEN = ""          # Google Search Console verification token (meta tag); Joshua generates it in GSC
+GSC_TOKEN = "GJNmCtO-ITTkZ7nIhzAec9qveqPvQ24hSrZxLGKwuvc"          # Google Search Console verification token (meta tag); Joshua generates it in GSC
 CF_BEACON_TOKEN = ""    # Cloudflare Web Analytics beacon token; empty = no beacon emitted
 INDEXNOW_KEY = "e431c862123afb33b22681739bf0f4c8"
 FORM_EMAIL = "joshuaofisrael@gmail.com"
