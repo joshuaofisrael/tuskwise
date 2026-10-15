@@ -104,3 +104,11 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Action: linked the sleep cluster hub-to-spoke: behavior.html #sleep section, anatomy.html legs section ("sleep standing up" anchor) and the FAQ "Do elephants sleep standing up?" answer now link to /blog/how-long-do-elephants-sleep.html.
 - Why highest EV: no GSC data yet (token outstanding); the new long-tail article targets "how long do elephants sleep" / "do elephants sleep standing up", and these three evergreen pages already answer the query briefly, so contextual links pass authority and help crawlers find the new URL fast.
 - Result: built 42 pages; IndexNow pinged for the 3 changed pages.
+
+## 2026-10-15 ~01:09 London - Daily fact: do elephants use tools?
+- Action: published /blog/do-elephants-use-tools.html (fly switches, platform insight, water and hose tool use; 6 Crossref-verified DOIs; FAQ schema; cite box; ~1,197 body words).
+- Why highest EV: high-intent long-tail query ("do elephants use tools") with strong peer reviewed evidence; intelligence.html already answered briefly without a dedicated spoke page.
+- DOIs: 10.1006/anbe.1993.1183; 10.1006/anbe.1994.1209; 10.1006/anbe.2001.1815; 10.1371/journal.pone.0023251; 10.26451/abc.07.03.04.2020; 10.1016/j.cub.2024.10.017.
+- News: no relevant news (Oct 14 to 15 items were local HEC tragedies, a single-source Thailand contraception item, or a week-old Assam GPS report; skipped rather than stretch a NewsArticle).
+- SEO follow-up in same slot: contextual link from intelligence.html #tools and FAQ answer to the new article.
+- Browser: none used.
