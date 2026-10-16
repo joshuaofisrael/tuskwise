@@ -112,3 +112,10 @@ impressions; update the population post when the IUCN savanna elephant status re
 - News: no relevant news (Oct 14 to 15 items were local HEC tragedies, a single-source Thailand contraception item, or a week-old Assam GPS report; skipped rather than stretch a NewsArticle).
 - SEO follow-up in same slot: contextual link from intelligence.html #tools and FAQ answer to the new article.
 - Browser: none used.
+
+## 2026-10-16 ~01:15 London - Daily fact: how long do elephants live?
+- Action: published /blog/how-long-do-elephants-live.html (wild vs zoo lifespan, Amboseli and Myanmar timber-camp demography, no menopause, capture costs, molars, TP53; 7 Crossref-verified DOIs; FAQ schema; cite box; ~924 body words, ~1,190 incl. lead and FAQ).
+- Why highest EV: "how long do elephants live" is one of the highest-volume elephant fact queries and no existing page answered it; strong peer reviewed evidence base.
+- DOIs: 10.1017/S0952836901001212; 10.1007/s00265-015-2051-5; 10.1126/science.1164298; 10.1890/12-0834.1; 10.1186/s12983-014-0054-0; 10.1038/s41467-018-05515-8; 10.1001/jama.2015.13134.
+- SEO follow-up in same slot: contextual link from anatomy.html #teeth (last molar set wearing out) to the new article.
+- Browser: none used.
