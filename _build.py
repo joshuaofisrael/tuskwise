@@ -209,7 +209,7 @@ def render(p, by_out):
         parts.append(ld({"@context": "https://schema.org", **org()}))
     elif not noindex:
         if kind in ("article", "post"):
-            parts.append(ld({"@context": "https://schema.org", "@type": "Article" if kind == "article" else "BlogPosting",
+            parts.append(ld({"@context": "https://schema.org", "@type": "NewsArticle" if p.get("news") else ("Article" if kind == "article" else "BlogPosting"),
                              "headline": p["h1"], "description": p["description"], "image": OG_IMAGE,
                              "datePublished": p["published"], "dateModified": p.get("modified", p["published"]),
                              "author": org(False), "publisher": org(),
