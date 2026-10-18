@@ -12,7 +12,7 @@ SITE_URL = "https://tuskwise.com/"   # <- the ONLY place the base URL lives
 SITE_NAME = "TuskWise"
 LEGAL = "Joshua Israel Ventures LLC"
 GSC_TOKEN = "GJNmCtO-ITTkZ7nIhzAec9qveqPvQ24hSrZxLGKwuvc"          # Google Search Console verification token (meta tag); Joshua generates it in GSC
-CF_BEACON_TOKEN = ""    # Cloudflare Web Analytics beacon token; empty = no beacon emitted
+CF_BEACON_TOKEN = "7d94343603ce4dd49e0a4807313dcc5b"    # Cloudflare Web Analytics beacon token; empty = no beacon emitted
 INDEXNOW_KEY = "e431c862123afb33b22681739bf0f4c8"
 FORM_EMAIL = "joshuaofisrael@gmail.com"
 
@@ -168,8 +168,8 @@ def footer(prefix, absolute=False):
     base = BASE_PATH if absolute else prefix
     beacon = ""
     if CF_BEACON_TOKEN:
-        beacon = ("<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' "
-                  "data-cf-beacon='{\"token\": \"" + CF_BEACON_TOKEN + "\"}'></script><!-- End Cloudflare Web Analytics -->")
+        beacon = ("<script defer src='https://static.cloudflareinsights.com/beacon.min.js' "
+                  "data-cf-beacon='{\"token\": \"" + CF_BEACON_TOKEN + "\"}'></script>")
     return (f'<footer>{PRINTS}<section class="contact-us" id="contact-us"><h2>Contact us</h2><p>Questions, corrections or ideas? Email '
             f'<a href="mailto:{FORM_EMAIL}">{FORM_EMAIL}</a> or use our <a href="{base}contact.html">contact form</a>.</p></section>'
             f'<p class="flinks"><a href="{base}terms.html">Terms</a> &middot; <a href="{base}privacy.html">Privacy</a> &middot; '
