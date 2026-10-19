@@ -125,3 +125,8 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Fact article: blog/why-are-some-elephants-born-without-tusks.html (4 Crossref-verified DOIs: Campbell-Staton et al. 2021, Jachmann et al. 1995, Chiyo et al. 2015, Whitehouse 2002).
 - News: published blog/sri-lanka-tusker-kavantissa-dies-after-gunshot-wound.html (Kavantissa died 16 Oct; checked against Daily Mirror x2, Newswire, News 1st, Onlanka, Mongabay; no photos). Added NewsArticle JSON-LD to _build.py via "news": true meta flag.
 - SEO action: internal links to the tusklessness article from anatomy.html #tusks, conservation.html (poaching paragraph) and african-vs-asian-elephant.html (tusk callout), building a tusk/ivory topic cluster.
+
+## 2026-10-19 (01:13 slot)
+- Fact article: blog/why-do-elephants-throw-mud-and-dust-on-themselves.html (6 Crossref-verified DOIs: Lillywhite and Stein 1987, Wright and Luck 1984, Martins et al. 2018, Dunkin et al. 2013, Mole et al. 2016, Weissenböck et al. 2010).
+- News: no new news post. Updated the Kavantissa post: post-mortem done 17 Oct (Prof. Kavindra Wijesundera, Univ. of Peradeniya), samples sent for tests, cause of death still unpublished (Hiru News, Sunday Times SL, 18 Oct).
+- SEO action: started a skin/thermoregulation cluster: linked the new article from anatomy.html #skin and added a "Do elephants sweat?" Q&A (in FAQPage JSON-LD) to faq.html linking to it.
