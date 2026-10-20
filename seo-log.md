@@ -130,3 +130,9 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Fact article: blog/why-do-elephants-throw-mud-and-dust-on-themselves.html (6 Crossref-verified DOIs: Lillywhite and Stein 1987, Wright and Luck 1984, Martins et al. 2018, Dunkin et al. 2013, Mole et al. 2016, Weissenböck et al. 2010).
 - News: no new news post. Updated the Kavantissa post: post-mortem done 17 Oct (Prof. Kavindra Wijesundera, Univ. of Peradeniya), samples sent for tests, cause of death still unpublished (Hiru News, Sunday Times SL, 18 Oct).
 - SEO action: started a skin/thermoregulation cluster: linked the new article from anatomy.html #skin and added a "Do elephants sweat?" Q&A (in FAQPage JSON-LD) to faq.html linking to it.
+
+## 2026-10-20 (01:05 slot)
+- Fact article: blog/how-fast-can-elephants-run.html (5 Crossref-verified DOIs: Hutchinson et al. 2003 Nature, Hutchinson et al. 2006 JEB, Ren and Hutchinson 2008 J R Soc Interface, Genin et al. 2010 JEB, Wall et al. 2006 Curr Biol). Fills a gap: no page answered the high-volume "how fast can an elephant run" query. Linked from anatomy.html #feet.
+- News: no new news post. Kavantissa post updated with a dated 20 Oct update: cause of death still unpublished; presidential expert committee appointed 19 Oct (report in 30 days; Newswire, Newscenter.lk); arrests and CID inquiry due 17 Nov (News 1st, LK Post, Onlanka). Other item seen: tusker Agbo found safe at Nachchaduwa (Army.lk, Esana, 19 Oct), minor, not used.
+- SEO action: added "How fast can an elephant run?" Q&A (in FAQPage JSON-LD) to faq.html linking to the new article, starting a locomotion/legs cluster with anatomy #feet.
+- Browser: none used.
