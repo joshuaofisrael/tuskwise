@@ -136,3 +136,9 @@ impressions; update the population post when the IUCN savanna elephant status re
 - News: no new news post. Kavantissa post updated with a dated 20 Oct update: cause of death still unpublished; presidential expert committee appointed 19 Oct (report in 30 days; Newswire, Newscenter.lk); arrests and CID inquiry due 17 Nov (News 1st, LK Post, Onlanka). Other item seen: tusker Agbo found safe at Nachchaduwa (Army.lk, Esana, 19 Oct), minor, not used.
 - SEO action: added "How fast can an elephant run?" Q&A (in FAQPage JSON-LD) to faq.html linking to the new article, starting a locomotion/legs cluster with anatomy #feet.
 - Browser: none used.
+
+## 2026-10-21 (01:05 slot)
+- Fact article: blog/how-much-do-elephants-eat-and-drink.html (4 Crossref-verified DOIs: Clauss et al. 2003 J Anim Physiol Anim Nutr, Clauss et al. 2003 Oecologia, Sukumar 1990 J Trop Ecol, Cerling et al. 2006 PNAS; intake figures from SDZWA and Smithsonian). Targets "how much do elephants eat/drink a day". Linked from habitats #diet and asian-elephant #diet.
+- News: published blog/perak-studies-elephant-food-banks-to-curb-conflict.html (NewsArticle; The Star x2, NST, Bernama, FMT; context from Sukumar 1990). Kavantissa: no official cause or committee findings yet; no update (Sunday Times antibiotic claims still unconfirmed).
+- SEO action: FAQ "How much does an elephant eat a day?" (FAQPage JSON-LD) on faq.html linking to the article, starting a diet/feeding cluster (habitats, asian-elephant, news post).
+- Browser: none used.
