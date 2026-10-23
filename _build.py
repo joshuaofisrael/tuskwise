@@ -50,6 +50,52 @@ LOGO = ('<svg role="img" width="36" height="36" viewBox="0 0 64 64" aria-hidden=
         '<circle cx="31" cy="32" r="2.2" fill="#ff3b7a"/>'
         '</svg>')
 
+
+# AI-generated, photorealistic illustrative images (images/*.webp, 1280x720). Key = output page; value = (file, alt text).
+AI_ALT = {
+ "herd-waterhole": "Photorealistic AI-generated image of an African elephant family drinking at a waterhole at golden hour.",
+ "portrait-eye": "Photorealistic AI-generated close-up of an African elephant's eye and wrinkled skin.",
+ "herd-walking": "Photorealistic AI-generated image of an elephant family walking in a line across dry savanna with acacia trees behind.",
+ "feeding": "Photorealistic AI-generated image of an African elephant pulling green grass into its mouth with its trunk.",
+ "running": "Photorealistic AI-generated image of an African elephant running across open grassland with dust flying.",
+ "tuskless": "Photorealistic AI-generated image of a tuskless female African elephant standing in savanna grass.",
+ "dust-bath": "Photorealistic AI-generated image of an elephant throwing red dust over its back with its trunk.",
+ "old-elephant": "Photorealistic AI-generated image of an old African elephant with wrinkled skin and worn tusks at dusk.",
+ "asian-forest-wild": "Photorealistic AI-generated image of wild Asian elephants walking through misty green forest.",
+ "resting": "Photorealistic AI-generated image of an elephant resting in the shade of a tree at midday.",
+}
+AI_PAGES = {
+ "conservation.html": "herd-walking", "intelligence.html": "portrait-eye", "faq.html": "herd-waterhole",
+ "elephant-sanctuary-checklist.html": "asian-forest-wild", "about.html": "herd-waterhole",
+ "blog/index.html": "herd-waterhole",
+ "blog/how-much-do-elephants-eat-and-drink.html": "feeding",
+ "blog/how-fast-can-elephants-run.html": "running",
+ "blog/why-are-some-elephants-born-without-tusks.html": "tuskless",
+ "blog/why-do-elephants-throw-mud-and-dust-on-themselves.html": "dust-bath",
+ "blog/how-long-do-elephants-live.html": "old-elephant",
+ "blog/do-elephants-use-tools.html": "portrait-eye",
+ "blog/can-elephants-recognize-themselves-in-a-mirror.html": "portrait-eye",
+ "blog/do-elephants-really-never-forget.html": "portrait-eye",
+ "blog/do-elephants-have-names-for-each-other.html": "herd-waterhole",
+ "blog/do-elephants-mourn-their-dead.html": "herd-waterhole",
+ "blog/how-do-elephants-communicate-over-long-distances.html": "herd-walking",
+ "blog/how-many-elephants-are-left.html": "herd-walking",
+ "blog/how-long-do-elephants-sleep.html": "resting",
+ "blog/is-it-ethical-to-ride-elephants.html": "asian-forest-wild",
+}
+AI_NOTE = "AI-generated illustrative image, not a photograph of a real event."
+
+def ai_img(key, prefix, lazy=True, cls=""):
+    lz = ' loading="lazy" decoding="async"' if lazy else ' fetchpriority="high"'
+    return (f'<img{cls} src="{prefix}images/{key}.webp" alt="{esc(AI_ALT[key])}" width="1280" height="720"{lz}>')
+
+def ai_figure(key, prefix):
+    return (f'<figure class="photo ai">{ai_img(key, prefix, lazy=False)}'
+            f'<figcaption>{AI_NOTE} <a href="{prefix}about.html#images">About our images</a>.</figcaption></figure>')
+
+HOME_STRIP = ["herd-waterhole", "portrait-eye", "herd-walking"]
+HOME_CAPS = {"herd-waterhole": "Waterholes bring herds together", "portrait-eye": "Elephants are among the most intelligent animals", "herd-walking": "Family herds travel far for food and water"}
+
 def esc(s):
     return html.escape(s, quote=True)
 
@@ -176,7 +222,7 @@ def footer(prefix, absolute=False):
             f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}contact.html">Contact</a> &middot; '
             f'<a href="{base}about.html">About</a> &middot; <a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}games/index.html">Games</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
             f'<p class="legal">&copy; 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
-            f'<p>Original educational content about elephants. All text and illustrations are original.</p></footer>{beacon}</body></html>')
+            f'<p>Original educational content about elephants. All text is original. Photos are credited; other images are AI-generated illustrations (<a href="{base}about.html#images">about our images</a>).</p></footer>{beacon}</body></html>')
 
 MLA_MON = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]
 
@@ -210,7 +256,7 @@ def render(p, by_out):
     elif not noindex:
         if kind in ("article", "post"):
             parts.append(ld({"@context": "https://schema.org", "@type": "NewsArticle" if p.get("news") else ("Article" if kind == "article" else "BlogPosting"),
-                             "headline": p["h1"], "description": p["description"], "image": OG_IMAGE,
+                             "headline": p["h1"], "description": p["description"], "image": (SITE_URL + "images/" + AI_PAGES[out] + ".webp") if out in AI_PAGES else OG_IMAGE,
                              "datePublished": p["published"], "dateModified": p.get("modified", p["published"]),
                              "author": org(False), "publisher": org(),
                              "mainEntityOfPage": {"@type": "WebPage", "@id": canonical}, "inLanguage": "en"}))
@@ -290,10 +336,17 @@ def render(p, by_out):
             parts.append(f'<p class="meta">Last reviewed {nice_date(p.get("modified", p["published"]))} &middot; Free, no sign up, no ads</p>')
         if p.get("lead"):
             parts.append(f'<p class="lead">{p["lead"]}</p>')
+        akey = AI_PAGES.get(out)
+        if akey and not noindex and 'class="photo"' not in body and "{{POSTS}}" not in body:
+            parts.append(ai_figure(akey, prefix))
     if "{{POSTS}}" in body:
         posts = sorted([q for q in by_out.values() if q.get("kind") == "post"], key=lambda q: q["published"], reverse=True)
-        li = "".join(f'<li class="card"><h2><a href="{q["out"][5:]}">{esc(q["h1"])}</a></h2><p class="meta">{nice_date(q["published"])}</p><p>{esc(q["description"])}</p></li>' for q in posts)
+        li = "".join(f'<li class="card">' + (f'<a class="thumb" href="{q["out"][5:]}" tabindex="-1" aria-hidden="true">{ai_img(AI_PAGES[q["out"]], prefix)}</a>' if q["out"] in AI_PAGES else "") + f'<div><h2><a href="{q["out"][5:]}">{esc(q["h1"])}</a></h2><p class="meta">{nice_date(q["published"])}</p><p>{esc(q["description"])}</p></div></li>' for q in posts)
         body = body.replace("{{POSTS}}", f'<ul class="postlist">{li}</ul>')
+    if out == "index.html":
+        strip = "".join(f'<figure>{ai_img(k, prefix)}<figcaption>{HOME_CAPS[k]}</figcaption></figure>' for k in HOME_STRIP)
+        body = body + (f'<section class="gallery" aria-label="Elephants in the wild"><h2>Elephants up close</h2><div class="strip">{strip}</div>'
+                       f'<p class="meta">{AI_NOTE} <a href="{prefix}about.html#images">About our images</a>.</p></section>')
     parts.append(body)
     if p.get("faq"):
         qa = "".join(f'<details class="qa"><summary>{esc(q)}</summary><p>{a.replace("@/", prefix)}</p></details>' for q, a in p["faq"])
