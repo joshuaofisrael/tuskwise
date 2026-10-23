@@ -142,3 +142,7 @@ impressions; update the population post when the IUCN savanna elephant status re
 - News: published blog/perak-studies-elephant-food-banks-to-curb-conflict.html (NewsArticle; The Star x2, NST, Bernama, FMT; context from Sukumar 1990). Kavantissa: no official cause or committee findings yet; no update (Sunday Times antibiotic claims still unconfirmed).
 - SEO action: FAQ "How much does an elephant eat a day?" (FAQPage JSON-LD) on faq.html linking to the article, starting a diet/feeding cluster (habitats, asian-elephant, news post).
 - Browser: none used.
+
+## 2026-10-23 (London) site-wide photos and design polish (0f8f9e7)
+- Added 10 photorealistic AI-generated, labelled images (images/*.webp, 1280x720, 86-182 KB): home gallery of 3, blog index thumbnails, hero on 5 section pages and 14 fact articles (reused sensibly). None on Kavantissa or Perak news posts. "About our images" note on /about.html#images, footer updated.
+- Design polish in style.css/_build.py; fixed bad width attributes on 2 real photos. Contact form verified statically (no test sent). IndexNow pinged for all 50 sitemap URLs.
