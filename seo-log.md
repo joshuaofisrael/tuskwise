@@ -150,3 +150,4 @@ impressions; update the population post when the IUCN savanna elephant status re
 ## 2026-10-23 (London) Google AdSense site code, ads.txt, privacy update
 - Added AdSense script and google-adsense-account meta (ca-pub-5681559774142917) to the shared head() in _build.py, so all 51 pages carry them. No ad units, no separate consent banner (Google's consent message comes via the AdSense script).
 - ads.txt written by _build.py. Privacy page (/privacy.html, URL unchanged) has a new Advertising section and updated analytics/cookies/lead text; About and Disclaimer no longer say "no ads". Removed "no ads" from the page meta line.
+- Removed remaining "no ads" / "no tracking" wording (games index and two game pages meta, teachers index and species fact sheet, games/CREDITS.md); now "free to play/use, no sign-up". No em dashes. 6 pages reindexed via IndexNow.
