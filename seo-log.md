@@ -146,3 +146,7 @@ impressions; update the population post when the IUCN savanna elephant status re
 ## 2026-10-23 (London) site-wide photos and design polish (0f8f9e7)
 - Added 10 photorealistic AI-generated, labelled images (images/*.webp, 1280x720, 86-182 KB): home gallery of 3, blog index thumbnails, hero on 5 section pages and 14 fact articles (reused sensibly). None on Kavantissa or Perak news posts. "About our images" note on /about.html#images, footer updated.
 - Design polish in style.css/_build.py; fixed bad width attributes on 2 real photos. Contact form verified statically (no test sent). IndexNow pinged for all 50 sitemap URLs.
+
+## 2026-10-23 (London) Google AdSense site code, ads.txt, privacy update
+- Added AdSense script and google-adsense-account meta (ca-pub-5681559774142917) to the shared head() in _build.py, so all 51 pages carry them. No ad units, no separate consent banner (Google's consent message comes via the AdSense script).
+- ads.txt written by _build.py. Privacy page (/privacy.html, URL unchanged) has a new Advertising section and updated analytics/cookies/lead text; About and Disclaimer no longer say "no ads". Removed "no ads" from the page meta line.

@@ -12,6 +12,9 @@ SITE_URL = "https://tuskwise.com/"   # <- the ONLY place the base URL lives
 SITE_NAME = "TuskWise"
 LEGAL = "Joshua Israel Ventures LLC"
 GSC_TOKEN = "GJNmCtO-ITTkZ7nIhzAec9qveqPvQ24hSrZxLGKwuvc"          # Google Search Console verification token (meta tag); Joshua generates it in GSC
+ADSENSE_HEAD = ('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5681559774142917" crossorigin="anonymous"></script>'
+                '<meta name="google-adsense-account" content="ca-pub-5681559774142917">')
+ADS_TXT = "google.com, pub-5681559774142917, DIRECT, f08c47fec0942fa0\n"
 CF_BEACON_TOKEN = "7d94343603ce4dd49e0a4807313dcc5b"    # Cloudflare Web Analytics beacon token; empty = no beacon emitted
 INDEXNOW_KEY = "e431c862123afb33b22681739bf0f4c8"
 FORM_EMAIL = "joshuaofisrael@gmail.com"
@@ -183,6 +186,7 @@ def head(p, canonical, prefix, noindex=False, absolute=False):
     if p["out"] == "index.html" and GSC_TOKEN:
         h.append(f'<meta name="google-site-verification" content="{esc(GSC_TOKEN)}">')
     h.append('<meta name="viewport" content="width=device-width,initial-scale=1">')
+    h.append(ADSENSE_HEAD)
     h.append(f"<title>{esc(title)}</title><meta name=\"description\" content=\"{esc(desc)}\">")
     if noindex:
         h.append('<meta name="robots" content="noindex">')
@@ -333,7 +337,7 @@ def render(p, by_out):
             else:
                 parts.append(f'<p class="meta">Last reviewed {nice_date(reviewed)}</p>')
         if kind == "learning" and not noindex:
-            parts.append(f'<p class="meta">Last reviewed {nice_date(p.get("modified", p["published"]))} &middot; Free, no sign up, no ads</p>')
+            parts.append(f'<p class="meta">Last reviewed {nice_date(p.get("modified", p["published"]))} &middot; Free, no sign up</p>')
         if p.get("lead"):
             parts.append(f'<p class="lead">{p["lead"]}</p>')
         akey = AI_PAGES.get(out)
@@ -406,6 +410,7 @@ def main():
             "Claude-SearchBot", "Claude-User", "Google-Extended", "Applebot", "Applebot-Extended", "DuckAssistBot", "Amazonbot", "anthropic-ai", "CCBot", "Bytespider", "Meta-ExternalAgent", "cohere-ai"]
     rb = "User-agent: *\nAllow: /\n\n" + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots) + f"Sitemap: {SITE_URL}sitemap.xml\n"
     open(os.path.join(ROOT, "robots.txt"), "w").write(rb)
+    open(os.path.join(ROOT, "ads.txt"), "w").write(ADS_TXT)
     # llms.txt
     groups = {"guides": [], "tools": [], "classroom": [], "blog": [], "optional": []}
     for p in pages:
