@@ -1,6 +1,6 @@
 # TuskWise
 
-> TuskWise is a free, original educational website about elephants: the African savanna elephant, the African forest elephant and the Asian elephant. It covers how to tell the species apart, anatomy, family life and behavior, intelligence and memory research, habitats and diet, conservation status and population estimates, and how to see elephants ethically in the wild. Every page cites reputable sources such as the IUCN, WWF, accredited zoos and peer reviewed studies. Operated by Joshua Israel Ventures LLC.
+> TuskWise is a free, original educational website about elephants: the African savanna elephant, the African forest elephant and the Asian elephant. It covers how to tell the species apart, anatomy, family life and behavior, intelligence and memory research, habitats and diet, conservation status and population estimates, and how to see elephants ethically in the wild. Every page cites reputable sources such as the IUCN, WWF, accredited zoos and peer reviewed studies.
 
 The content is general education. Population figures are the latest published estimates and are dated on each page.
 

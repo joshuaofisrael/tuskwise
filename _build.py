@@ -156,7 +156,8 @@ def url_for(out):
     return SITE_URL + out
 
 def org(include_logo=True):
-    o = {"@type": "Organization", "@id": SITE_URL + "#organization", "name": LEGAL, "legalName": LEGAL, "url": SITE_URL,
+    o = {"@type": "Organization", "@id": SITE_URL + "#organization", "name": SITE_NAME, "url": SITE_URL,
+         "parentOrganization": {"@type": "Organization", "name": LEGAL},
          "email": FORM_EMAIL, "brand": {"@type": "Brand", "name": SITE_NAME}}
     if include_logo:
         o["logo"] = SITE_URL + "logo.png"
@@ -226,7 +227,6 @@ def footer(prefix, absolute=False):
             f'<p class="flinks"><a href="{base}terms.html">Terms</a> &middot; <a href="{base}privacy.html">Privacy</a> &middot; '
             f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}contact.html">Contact</a> &middot; '
             f'<a href="{base}about.html">About</a> &middot; <a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}games/index.html">Games</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
-            f'<p class="legal">&copy; 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
             f'<p>Original educational content about elephants. All text is original. Photos are credited; other images are AI-generated illustrations (<a href="{base}about.html#images">about our images</a>).</p></footer>{beacon}</body></html>')
 
 MLA_MON = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]
@@ -238,8 +238,8 @@ def cite_box(p, canonical, prefix):
     end = "" if title[-1:] in "?!" else "."
     bare = canonical.replace("https://", "")
     apa = f"{SITE_NAME}. ({dt.year}, {mon} {dt.day}). <i>{title}</i>{end} {canonical}"
-    mla = f"&ldquo;{title}{end}&rdquo; <i>{SITE_NAME}</i>, {LEGAL}, {dt.day} {MLA_MON[dt.month - 1]} {dt.year}, {bare}."
-    chi = f"{SITE_NAME}. &ldquo;{title}{end}&rdquo; {LEGAL}. Last modified {mon} {dt.day}, {dt.year}. {canonical}."
+    mla = f"&ldquo;{title}{end}&rdquo; <i>{SITE_NAME}</i>, {dt.day} {MLA_MON[dt.month - 1]} {dt.year}, {bare}."
+    chi = f"{SITE_NAME}. &ldquo;{title}{end}&rdquo; {SITE_NAME}. Last modified {mon} {dt.day}, {dt.year}. {canonical}."
     return (f'<section class="card cite" id="cite"><h2>Cite this page</h2>'
             f'<p class="meta">Last reviewed {nice_date(reviewed)}. Suggested citations for students and teachers:</p>'
             f'<p><b>APA</b><br>{apa}</p><p><b>MLA</b><br>{mla}</p><p><b>Chicago</b><br>{chi}</p>'
@@ -369,7 +369,7 @@ def render(p, by_out):
     if kind in ("article", "post") and not noindex:
         parts.append(cite_box(p, canonical, prefix))
     if kind == "learning":
-        parts.append(f'<p class="meta">Free for classroom use. Printed from {SITE_URL}{"" if out == "index.html" else out.replace("index.html", "")} &middot; &copy; 2026 {LEGAL}.</p>')
+        parts.append(f'<p class="meta">Free for classroom use. Printed from {SITE_URL}{"" if out == "index.html" else out.replace("index.html", "")} &middot; {SITE_NAME}.</p>')
     parts.append('</main>' if noads else '<!-- AD SLOT: in-content (reserved, no ad code) --><div class="ad-slot" data-slot="content-bottom" hidden></div></main>')
     parts.append(footer(prefix))
     return "".join(parts)
@@ -424,7 +424,7 @@ def main():
             s += "\n  - Sections: " + ", ".join(f"[{t}]({url_for(p['out'])}#{a})" for t, a in p["anchors"])
         return s
     lt = [f"# {SITE_NAME}", "",
-          f"> {SITE_NAME} is a free, original educational website about elephants: the African savanna elephant, the African forest elephant and the Asian elephant. It covers how to tell the species apart, anatomy, family life and behavior, intelligence and memory research, habitats and diet, conservation status and population estimates, and how to see elephants ethically in the wild. Every page cites reputable sources such as the IUCN, WWF, accredited zoos and peer reviewed studies. Operated by {LEGAL}.",
+          f"> {SITE_NAME} is a free, original educational website about elephants: the African savanna elephant, the African forest elephant and the Asian elephant. It covers how to tell the species apart, anatomy, family life and behavior, intelligence and memory research, habitats and diet, conservation status and population estimates, and how to see elephants ethically in the wild. Every page cites reputable sources such as the IUCN, WWF, accredited zoos and peer reviewed studies.",
           "", "The content is general education. Population figures are the latest published estimates and are dated on each page.", ""]
     for g, title in (("tools", "Tools"), ("guides", "Guides"), ("classroom", "Classroom"), ("blog", "Blog"), ("optional", "Optional")):
         if groups[g]:
