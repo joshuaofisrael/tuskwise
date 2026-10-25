@@ -3,6 +3,7 @@ exclude:
   - _build.py
   - _src
   - seo-log.md
+  - STATE.md
   - README.md
   - indexnow.sh
   - _og.py
