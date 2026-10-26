@@ -157,3 +157,8 @@ impressions; update the population post when the IUCN savanna elephant status re
 - News: no new post. Kavantissa covered already (Mongabay 24 Oct adds context, noted for the Nov follow-up); Polonnaruwa transit home only one source so far.
 - SEO/compliance action: applied Joshua's 24 Oct legal-name rule sitewide. Removed footer copyright/LLC line; JSON-LD Organization name now TuskWise with parentOrganization Joshua Israel Ventures LLC; cite box MLA/Chicago publisher TuskWise; teachers print line, llms.txt, About page and game notes no longer name the LLC; terms, privacy, disclaimer carry the trade-name copyright line. All pages reindexed via IndexNow.
 - STATE.md created.
+
+## 2026-10-26 (London) Daily slot
+- Fact article: "How Much Does an Elephant Weigh? Weights by Species and Sex" /blog/how-much-does-an-elephant-weigh.html (~840 words, FAQPage 6 Qs, cite box, sources). 3 DOIs verified on Crossref, claims checked against full text/abstracts: Larramendi 2016 Acta Palaeontol Pol 10.4202/app.00136.2014 (open-access PDF read); Mumby et al. 2015 BMC Evol Biol 10.1186/s12862-015-0487-x; Myhrvold et al. 2012 PLoS ONE 10.1371/journal.pone.0047018. (Shrader 2006 and Lee & Moss 1995 considered but dropped: abstracts not accessible to verify.)
+- News: "Sri Lanka plans a second Elephant Transit Home in Polonnaruwa" /blog/sri-lanka-plans-second-elephant-transit-home-polonnaruwa.html, NewsArticle JSON-LD, no image; sources News 1st, Newswire, Lanka Leader (24 Oct).
+- SEO action: homepage <title> trimmed from 64 to 58 chars ("TuskWise: Elephant Facts, Species, Behavior & Conservation"); og/twitter titles follow. sameAs skipped (no real TuskWise profiles). AdSense kept. IndexNow pinged.

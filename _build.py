@@ -73,6 +73,7 @@ AI_PAGES = {
  "blog/index.html": "herd-waterhole",
  "blog/how-much-do-elephants-eat-and-drink.html": "feeding",
  "blog/how-many-muscles-are-in-an-elephant-trunk.html": "feeding",
+ "blog/how-much-does-an-elephant-weigh.html": "herd-walking",
  "blog/how-fast-can-elephants-run.html": "running",
  "blog/why-are-some-elephants-born-without-tusks.html": "tuskless",
  "blog/why-do-elephants-throw-mud-and-dust-on-themselves.html": "dust-bath",
