@@ -67,7 +67,7 @@ The content is general education. Population figures are the latest published es
 - [About TuskWise](https://tuskwise.com/about.html): who runs the site and how content is researched, sourced and corrected
 - [Contact TuskWise](https://tuskwise.com/contact.html): contact form and email address
 - [Disclaimer](https://tuskwise.com/disclaimer.html): accuracy, no professional relationship, ethical travel guidance and advertising disclosure
-- [Privacy policy](https://tuskwise.com/privacy.html): data controller, what is collected (contact form only), hosting, analytics status and cookies
+- [Privacy policy](https://tuskwise.com/privacy.html): data controller, what is collected (contact form only), hosting, analytics (Cloudflare, Google Analytics 4 after consent) and cookies
 - [Terms of Use](https://tuskwise.com/terms.html): terms of use: who you contract with, no professional advice, liability and governing law
 - [TuskWise blog](https://tuskwise.com/blog/): index of answer first articles
 - [Photo credits](https://tuskwise.com/credits/): author, source page and licence for every photograph on TuskWise

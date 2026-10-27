@@ -15,3 +15,8 @@
 
 ## NamedScan fixes (PA relay, 25 Oct 11:33) - done 26 Oct
 - Homepage <title> trimmed 64 -> 58 chars; AdSense kept; sameAs skipped (no real TuskWise social profiles exist). IndexNow pinged. One-line reply to PA left to the parent/PA relay (this slot sends no messages).
+
+## 27 Oct 2026: GA4 + consent, AdSense removed
+- GA4 G-0NVFYH6S61 via gtag.js, injected only after Accept in the #mtm-consent banner (localStorage key mtm-analytics-consent; Consent Mode v2 defaults denied; footer "Cookie settings" reopens). Built in _build.py (GA_HEAD, CONSENT_JS).
+- Standing rule: no AdSense/Ezoic for now; site built for Mediavine Journey (PA applies at 100 views/day). AdSense head tags and ads.txt removed. Privacy/About/Disclaimer updated.
+- Thin pages: noindex thin pages if any. Candidates noticed (visible words, quick count, not an audit): contact.html (~77, utility page), games/savanna-or-forest, games/waterhole-catch, games/matriarchs-footsteps (~170 each, interactive), games/index.html (~180), credits/index.html (~205). Decide whether to expand or noindex; none noindexed yet.

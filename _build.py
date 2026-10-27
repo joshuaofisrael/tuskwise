@@ -12,9 +12,27 @@ SITE_URL = "https://tuskwise.com/"   # <- the ONLY place the base URL lives
 SITE_NAME = "TuskWise"
 LEGAL = "Joshua Israel Ventures LLC"
 GSC_TOKEN = "GJNmCtO-ITTkZ7nIhzAec9qveqPvQ24hSrZxLGKwuvc"          # Google Search Console verification token (meta tag); Joshua generates it in GSC
-ADSENSE_HEAD = ('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5681559774142917" crossorigin="anonymous"></script>'
-                '<meta name="google-adsense-account" content="ca-pub-5681559774142917">')
-ADS_TXT = "google.com, pub-5681559774142917, DIRECT, f08c47fec0942fa0\n"
+GA_ID = "G-0NVFYH6S61"
+# Consent Mode v2: everything denied by default; gtag.js is injected only after the visitor accepts.
+GA_HEAD = ("<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
+           "gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});"
+           "</script>")
+CONSENT_JS = r"""<script>(function(){var K='mtm-analytics-consent',G='""" + GA_ID + r"""',loaded=false;
+function load(){if(loaded)return;loaded=true;gtag('consent','update',{analytics_storage:'granted'});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+G;document.head.appendChild(s);gtag('js',new Date());gtag('config',G,{anonymize_ip:true});}
+function wipe(){document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(n.indexOf('_ga')===0){var d=location.hostname.replace(/^www\./,'');['', ';domain=.'+d, ';domain='+d].forEach(function(x){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+x;});}});}
+function close(){var b=document.getElementById('mtm-consent');if(b)b.remove();}
+function set(v){try{localStorage.setItem(K,v);}catch(e){}close();if(v==='granted')load();else{gtag('consent','update',{analytics_storage:'denied'});wipe();window['ga-disable-'+G]=true;}}
+function show(){if(document.getElementById('mtm-consent'))return;var d=document.createElement('div');d.id='mtm-consent';d.setAttribute('role','dialog');d.setAttribute('aria-label','Cookie consent');
+d.innerHTML='<p>We use Google Analytics cookies to count visits, only if you agree. <a href="/privacy.html#ga4">Privacy policy</a></p><button type="button" class="acc">Accept</button> <button type="button" class="rej">Decline</button>';
+d.querySelector('.acc').onclick=function(){set('granted');};d.querySelector('.rej').onclick=function(){set('denied');};document.body.appendChild(d);}
+var v=null;try{v=localStorage.getItem(K);}catch(e){}
+if(v==='granted')load();else if(v!=='denied')show();
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-consent-open]');if(t){e.preventDefault();show();}});})();</script>"""
+CONSENT_CSS = ("<style>#mtm-consent{position:fixed;left:1rem;right:1rem;bottom:1rem;max-width:34rem;margin:auto;background:#1a1464;color:#fff;"
+               "padding:1rem;border-radius:12px;box-shadow:0 4px 18px rgba(0,0,0,.3);z-index:999;font-size:.95rem}"
+               "#mtm-consent p{margin:0 0 .6rem}#mtm-consent a{color:#ffe566}#mtm-consent button{font:inherit;padding:.45rem 1rem;border-radius:8px;border:2px solid #fff;cursor:pointer}"
+               "#mtm-consent .acc{background:#ffe566;color:#1a1464;border-color:#ffe566}#mtm-consent .rej{background:transparent;color:#fff}"
+               "#mtm-consent button:focus-visible{outline:3px solid #ff3b7a;outline-offset:2px}</style>")
 CF_BEACON_TOKEN = "7d94343603ce4dd49e0a4807313dcc5b"    # Cloudflare Web Analytics beacon token; empty = no beacon emitted
 INDEXNOW_KEY = "e431c862123afb33b22681739bf0f4c8"
 FORM_EMAIL = "joshuaofisrael@gmail.com"
@@ -191,7 +209,7 @@ def head(p, canonical, prefix, noindex=False, absolute=False):
     if p["out"] == "index.html" and GSC_TOKEN:
         h.append(f'<meta name="google-site-verification" content="{esc(GSC_TOKEN)}">')
     h.append('<meta name="viewport" content="width=device-width,initial-scale=1">')
-    h.append(ADSENSE_HEAD)
+    h.append(GA_HEAD + CONSENT_CSS)
     h.append(f"<title>{esc(title)}</title><meta name=\"description\" content=\"{esc(desc)}\">")
     if noindex:
         h.append('<meta name="robots" content="noindex">')
@@ -229,8 +247,8 @@ def footer(prefix, absolute=False):
             f'<a href="mailto:{FORM_EMAIL}">{FORM_EMAIL}</a> or use our <a href="{base}contact.html">contact form</a>.</p></section>'
             f'<p class="flinks"><a href="{base}terms.html">Terms</a> &middot; <a href="{base}privacy.html">Privacy</a> &middot; '
             f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}contact.html">Contact</a> &middot; '
-            f'<a href="{base}about.html">About</a> &middot; <a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}games/index.html">Games</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a></p>'
-            f'<p>Original educational content about elephants. All text is original. Photos are credited; other images are AI-generated illustrations (<a href="{base}about.html#images">about our images</a>).</p></footer>{beacon}</body></html>')
+            f'<a href="{base}about.html">About</a> &middot; <a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}games/index.html">Games</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a> &middot; <a href="#" data-consent-open>Cookie settings</a></p>'
+            f'<p>Original educational content about elephants. All text is original. Photos are credited; other images are AI-generated illustrations (<a href="{base}about.html#images">about our images</a>).</p></footer>{beacon}{CONSENT_JS}</body></html>')
 
 MLA_MON = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]
 
@@ -414,7 +432,7 @@ def main():
             "Claude-SearchBot", "Claude-User", "Google-Extended", "Applebot", "Applebot-Extended", "DuckAssistBot", "Amazonbot", "anthropic-ai", "CCBot", "Bytespider", "Meta-ExternalAgent", "cohere-ai"]
     rb = "User-agent: *\nAllow: /\n\n" + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots) + f"Sitemap: {SITE_URL}sitemap.xml\n"
     open(os.path.join(ROOT, "robots.txt"), "w").write(rb)
-    open(os.path.join(ROOT, "ads.txt"), "w").write(ADS_TXT)
+    if os.path.exists(os.path.join(ROOT, "ads.txt")): os.remove(os.path.join(ROOT, "ads.txt"))
     # llms.txt
     groups = {"guides": [], "tools": [], "classroom": [], "blog": [], "optional": []}
     for p in pages:
