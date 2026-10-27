@@ -162,3 +162,8 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Fact article: "How Much Does an Elephant Weigh? Weights by Species and Sex" /blog/how-much-does-an-elephant-weigh.html (~840 words, FAQPage 6 Qs, cite box, sources). 3 DOIs verified on Crossref, claims checked against full text/abstracts: Larramendi 2016 Acta Palaeontol Pol 10.4202/app.00136.2014 (open-access PDF read); Mumby et al. 2015 BMC Evol Biol 10.1186/s12862-015-0487-x; Myhrvold et al. 2012 PLoS ONE 10.1371/journal.pone.0047018. (Shrader 2006 and Lee & Moss 1995 considered but dropped: abstracts not accessible to verify.)
 - News: "Sri Lanka plans a second Elephant Transit Home in Polonnaruwa" /blog/sri-lanka-plans-second-elephant-transit-home-polonnaruwa.html, NewsArticle JSON-LD, no image; sources News 1st, Newswire, Lanka Leader (24 Oct).
 - SEO action: homepage <title> trimmed from 64 to 58 chars ("TuskWise: Elephant Facts, Species, Behavior & Conservation"); og/twitter titles follow. sameAs skipped (no real TuskWise profiles). AdSense kept. IndexNow pinged.
+
+## 2026-10-27 (01:05 slot)
+- Fact article: How many teeth do elephants have? (3 Crossref-verified DOIs: Laws 1966, Lee et al. 2012, Roth & Shoshani 1988), FAQ schema, cite box, sitemap, IndexNow.
+- News: Sri Lanka armed forces to help protect ~13 wild tuskers (The Island, Sri Lanka Army, Sunday Times, The Morning).
+- SEO action: internal link from anatomy.html teeth section to the new teeth article (topical cluster); anatomy modified date bumped.
