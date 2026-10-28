@@ -93,6 +93,7 @@ AI_PAGES = {
  "blog/how-many-muscles-are-in-an-elephant-trunk.html": "feeding",
  "blog/how-much-does-an-elephant-weigh.html": "herd-walking",
  "blog/how-many-teeth-do-elephants-have.html": "old-elephant",
+ "blog/are-elephants-afraid-of-bees.html": "herd-walking",
  "blog/sri-lanka-armed-forces-to-help-protect-wild-tuskers.html": "asian-forest-wild",
  "blog/how-fast-can-elephants-run.html": "running",
  "blog/why-are-some-elephants-born-without-tusks.html": "tuskless",

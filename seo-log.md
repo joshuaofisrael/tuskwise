@@ -167,3 +167,8 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Fact article: How many teeth do elephants have? (3 Crossref-verified DOIs: Laws 1966, Lee et al. 2012, Roth & Shoshani 1988), FAQ schema, cite box, sitemap, IndexNow.
 - News: Sri Lanka armed forces to help protect ~13 wild tuskers (The Island, Sri Lanka Army, Sunday Times, The Morning).
 - SEO action: internal link from anatomy.html teeth section to the new teeth article (topical cluster); anatomy modified date bumped.
+
+## 2026-10-28 (01:05 slot, started late ~01:15)
+- Fact article: "Are Elephants Afraid of Bees? What the Research Shows" /blog/are-elephants-afraid-of-bees.html (~1,090 words, FAQPage 6 Qs, cite box, sources). 6 DOIs verified on Crossref; claims checked against abstracts/full text summaries: King et al. 2007 Curr Biol 10.1016/j.cub.2007.07.038; King et al. 2010 PLoS ONE 10.1371/journal.pone.0010346; King et al. 2018 Curr Biol 10.1016/j.cub.2017.12.018; Vollrath & Douglas-Hamilton 2002 Naturwissenschaften 10.1007/s00114-002-0375-2; King et al. 2009 Afr J Ecol 10.1111/j.1365-2028.2009.01114.x; King et al. 2011 Afr J Ecol 10.1111/j.1365-2028.2011.01275.x. Legal-hold check: no rule hit.
+- News: no post (time). Lead noted: Thai customs ivory seizure (Bangkok Post 27 Oct), needs second source. No update on Sri Lanka tuskers ops room.
+- SEO action: internal link from conservation.html human-elephant conflict section (beehive fences) to the new bees article; conservation modified date bumped. IndexNow pinged.
