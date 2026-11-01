@@ -95,6 +95,7 @@ AI_PAGES = {
  "blog/how-many-teeth-do-elephants-have.html": "old-elephant",
  "blog/are-elephants-afraid-of-bees.html": "herd-walking",
  "blog/why-dont-elephants-get-cancer.html": "old-elephant",
+ "blog/can-elephants-swim.html": "herd-waterhole",
  "blog/thailand-seizes-3-tonnes-of-ivory-from-zambia-at-laem-chabang.html": "old-elephant",
  "blog/sri-lanka-armed-forces-to-help-protect-wild-tuskers.html": "asian-forest-wild",
  "blog/how-fast-can-elephants-run.html": "running",
