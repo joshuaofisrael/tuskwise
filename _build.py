@@ -84,6 +84,8 @@ AI_ALT = {
  "old-elephant": "Photorealistic AI-generated image of an old African elephant with wrinkled skin and worn tusks at dusk.",
  "asian-forest-wild": "Photorealistic AI-generated image of wild Asian elephants walking through misty green forest.",
  "resting": "Photorealistic AI-generated image of an elephant resting in the shade of a tree at midday.",
+ "brain-portrait": "Photorealistic AI-generated close-up portrait of an African elephant's head, showing its large forehead and an alert eye.",
+ "trunk-dexterity": "Photorealistic AI-generated image of an African elephant using the fingerlike tip of its trunk to pluck a single leaf from a branch.",
 }
 AI_PAGES = {
  "conservation.html": "herd-walking", "intelligence.html": "portrait-eye", "faq.html": "herd-waterhole",
@@ -112,6 +114,7 @@ AI_PAGES = {
  "blog/how-many-elephants-are-left.html": "herd-walking",
  "blog/how-long-do-elephants-sleep.html": "resting",
  "blog/is-it-ethical-to-ride-elephants.html": "asian-forest-wild",
+ "blog/how-smart-are-elephants.html": "brain-portrait",
 }
 AI_NOTE = "AI-generated illustrative image, not a photograph of a real event."
 
