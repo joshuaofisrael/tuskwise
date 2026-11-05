@@ -112,6 +112,8 @@ AI_PAGES = {
  "blog/how-many-elephants-are-left.html": "herd-walking",
  "blog/how-long-do-elephants-sleep.html": "resting",
  "blog/is-it-ethical-to-ride-elephants.html": "asian-forest-wild",
+ "blog/can-elephants-jump.html": "running",
+ "blog/do-elephants-have-the-best-sense-of-smell.html": "portrait-eye",
 }
 AI_NOTE = "AI-generated illustrative image, not a photograph of a real event."
 
