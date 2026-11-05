@@ -200,3 +200,10 @@ footer{background:#fff;color:#000;border-radius:0}
 .answer-key{border:2px solid #000}
 .sheet h2::before{display:none}
 }
+
+/* style-pass 2026-11-05 */
+:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}
+main p,article p,.prose p{max-width:68ch;line-height:1.7}
+.card img,figure img,.tile img{aspect-ratio:3/2;object-fit:cover;width:100%;height:auto;display:block}
+footer .links,footer nav,.site-footer{display:flex;flex-wrap:wrap;gap:.4rem 1rem;justify-content:center}
+@media(max-width:640px){main{padding:1rem .85rem}.grid{grid-template-columns:1fr}}
