@@ -256,8 +256,9 @@ def footer(prefix, absolute=False):
     return (f'<footer>{PRINTS}<section class="contact-us" id="contact-us"><h2>Contact us</h2><p>Questions, corrections or ideas? Email '
             f'<a href="mailto:{FORM_EMAIL}">{FORM_EMAIL}</a> or use our <a href="{base}contact.html">contact form</a>.</p></section>'
             f'<p class="flinks"><a href="{base}terms.html">Terms</a> &middot; <a href="{base}privacy.html">Privacy</a> &middot; '
-            f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}contact.html">Contact</a> &middot; '
-            f'<a href="{base}about.html">About</a> &middot; <a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}games/index.html">Games</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a> &middot; <a href="#" data-consent-open>Cookie settings</a></p>'
+            f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}disclosure.html">Editorial disclosure</a> &middot; '
+            f'<a href="{base}contact.html">Contact</a> &middot; <a href="{base}about.html">About</a> &middot; '
+            f'<a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}games/index.html">Games</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a> &middot; <a href="#" data-consent-open>Cookie settings</a></p>'
             f'<p>Original educational content about elephants. All text is original. Photos are credited; other images are AI-generated illustrations (<a href="{base}about.html#images">about our images</a>).</p></footer>{beacon}{CONSENT_JS}</body></html>')
 
 MLA_MON = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]
@@ -438,11 +439,12 @@ def main():
         f"<url><loc>{u}</loc><lastmod>{d}</lastmod></url>\n" for u, d in urls) + "</urlset>\n"
     open(os.path.join(ROOT, "sitemap.xml"), "w").write(sm)
     # robots
-    bots = ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "GPTBot", "PerplexityBot", "Perplexity-User", "ClaudeBot",
+    bots = ["Mediapartners-Google", "Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "GPTBot", "PerplexityBot", "Perplexity-User", "ClaudeBot",
             "Claude-SearchBot", "Claude-User", "Google-Extended", "Applebot", "Applebot-Extended", "DuckAssistBot", "Amazonbot", "anthropic-ai", "CCBot", "Bytespider", "Meta-ExternalAgent", "cohere-ai"]
     rb = "User-agent: *\nAllow: /\n\n" + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots) + f"Sitemap: {SITE_URL}sitemap.xml\n"
     open(os.path.join(ROOT, "robots.txt"), "w").write(rb)
-    if os.path.exists(os.path.join(ROOT, "ads.txt")): os.remove(os.path.join(ROOT, "ads.txt"))
+    # ads.txt only. Do not inject the AdSense script; the publisher line is the prep step.
+    open(os.path.join(ROOT, "ads.txt"), "w").write("google.com, pub-5681559774142917, DIRECT, f08c47fec0942fa0\n")
     # llms.txt
     groups = {"guides": [], "tools": [], "classroom": [], "blog": [], "optional": []}
     for p in pages:
