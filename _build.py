@@ -74,6 +74,8 @@ LOGO = ('<svg role="img" width="36" height="36" viewBox="0 0 64 64" aria-hidden=
 
 # AI-generated, photorealistic illustrative images (images/*.webp, 1280x720). Key = output page; value = (file, alt text).
 AI_ALT = {
+ "elephant-quiet-walk-hero": "Photorealistic AI-generated image of an African elephant walking gently across a sandy savanna track at sunrise.",
+ "elephant-foot-sand": "Photorealistic AI-generated close-up of an elephant foot pressing into soft sand, showing the textured sole.",
  "elephant-tusks-hero": "Photorealistic AI-generated image of an African elephant with long curved tusks standing in dry savanna grass.",
  "herd-waterhole": "Photorealistic AI-generated image of an African elephant family drinking at a waterhole at golden hour.",
  "portrait-eye": "Photorealistic AI-generated close-up of an African elephant's eye and wrinkled skin.",
@@ -89,6 +91,7 @@ AI_ALT = {
  "trunk-dexterity": "Photorealistic AI-generated image of an African elephant using the fingerlike tip of its trunk to pluck a single leaf from a branch.",
 }
 AI_PAGES = {
+ "blog/why-can-elephants-walk-so-quietly.html": "elephant-quiet-walk-hero",
  "blog/why-do-elephants-have-tusks.html": "elephant-tusks-hero",
  "conservation.html": "herd-walking", "intelligence.html": "portrait-eye", "faq.html": "herd-waterhole",
  "elephant-sanctuary-checklist.html": "asian-forest-wild", "about.html": "herd-waterhole",
