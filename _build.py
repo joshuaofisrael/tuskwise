@@ -92,6 +92,7 @@ AI_ALT = {
 }
 AI_PAGES = {
  "blog/why-can-elephants-walk-so-quietly.html": "elephant-quiet-walk-hero",
+ "blog/why-is-elephant-skin-so-wrinkly.html": "dust-bath",
  "blog/why-do-elephants-have-tusks.html": "elephant-tusks-hero",
  "conservation.html": "herd-walking", "intelligence.html": "portrait-eye", "faq.html": "herd-waterhole",
  "elephant-sanctuary-checklist.html": "asian-forest-wild", "about.html": "herd-waterhole",
