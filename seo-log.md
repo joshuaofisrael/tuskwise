@@ -185,3 +185,6 @@ impressions; update the population post when the IUCN savanna elephant status re
 
 ## 2026-11-12 — Evergreen: What is musth in elephants?
 - Published /blog/what-is-musth-in-elephants.html (written by Grok Bot; SDZWA Library African and Asian elephant fact sheets, Rasmussen et al. 1984 and Glaeser et al. 2022 DOIs checked on Crossref with abstracts read) with 1 reused AI image (elephant-tusks-hero, AI label + /about.html#images), blog index, homepage list, sitemap, llms.txt. Manual legal check: no hold rule applies.
+
+## 2026-11-13 — Evergreen: How many toes and toenails do elephants have?
+- Published /blog/how-many-toes-and-toenails-do-elephants-have.html (written by Grok Bot; IELC African elephant fact sheet, Elephant Aid International x2, all loaded 13 Nov 2026) with 1 reused AI image (elephant-foot-sand, AI label + /about.html#images), blog index, homepage list, sitemap, llms.txt, _src copy. Manual legal check: no hold rule applies.
