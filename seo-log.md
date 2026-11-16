@@ -188,3 +188,6 @@ impressions; update the population post when the IUCN savanna elephant status re
 
 ## 2026-11-13 — Evergreen: How many toes and toenails do elephants have?
 - Published /blog/how-many-toes-and-toenails-do-elephants-have.html (written by Grok Bot; IELC African elephant fact sheet, Elephant Aid International x2, all loaded 13 Nov 2026) with 1 reused AI image (elephant-foot-sand, AI label + /about.html#images), blog index, homepage list, sitemap, llms.txt, _src copy. Manual legal check: no hold rule applies.
+
+## 2026-11-16 — Evergreen: How do elephant families raise their calves?
+- Published /blog/how-do-elephant-families-raise-calves.html (ChatGPT draft, sources checked 16 Nov 2026 against ElephantVoices pages; one overstated allomother-survival claim reworded) with 1 reused photo (savanna-mother-calf, CC BY-SA, source link to credits), blog index card, sitemap, llms.txt, _src copy.
