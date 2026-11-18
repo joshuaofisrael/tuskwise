@@ -191,3 +191,6 @@ impressions; update the population post when the IUCN savanna elephant status re
 
 ## 2026-11-16 — Evergreen: How do elephant families raise their calves?
 - Published /blog/how-do-elephant-families-raise-calves.html (ChatGPT draft, sources checked 16 Nov 2026 against ElephantVoices pages; one overstated allomother-survival claim reworded) with 1 reused photo (savanna-mother-calf, CC BY-SA, source link to credits), blog index card, sitemap, llms.txt, _src copy.
+
+## 2026-11-18: Evergreen: Why do male elephants leave the herd?
+- Published /blog/why-do-male-elephants-leave-the-herd.html (original; Smithsonian National Zoo Asian elephant page, San Diego Zoo Wildlife Alliance elephant page, IELC African and Asian elephant behavior fact sheets, and the Evans and Harris 2008 abstract on the Namibia EIS eLibrary, all HTTP 200 on 18 Nov 2026) with 1 reused AI image (images/trunk-dexterity.webp, Source link to /about.html#images), blog index card, homepage list, sitemap, llms.txt, _src copy.

@@ -92,6 +92,7 @@ AI_ALT = {
  "trunk-dexterity": "Photorealistic AI-generated image of an African elephant using the fingerlike tip of its trunk to pluck a single leaf from a branch.",
 }
 AI_PAGES = {
+ "blog/why-do-male-elephants-leave-the-herd.html": "trunk-dexterity",
  "blog/how-do-elephant-families-raise-calves.html": "savanna-mother-calf-card",
  "blog/why-can-elephants-walk-so-quietly.html": "elephant-quiet-walk-hero",
  "blog/why-is-elephant-skin-so-wrinkly.html": "dust-bath",
