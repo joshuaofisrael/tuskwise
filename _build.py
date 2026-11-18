@@ -137,7 +137,7 @@ def ai_img(key, prefix, lazy=True, cls=""):
 
 def ai_figure(key, prefix):
     return (f'<figure class="photo ai">{ai_img(key, prefix, lazy=False)}'
-            f'<figcaption>{AI_NOTE} <a href="{prefix}about.html#images">About our images</a>.</figcaption></figure>')
+            f'<figcaption>{AI_NOTE} <a href="{prefix}image-policy/">Source</a>.</figcaption></figure>')
 
 HOME_STRIP = ["herd-waterhole", "portrait-eye", "herd-walking"]
 HOME_CAPS = {"herd-waterhole": "Waterholes bring herds together", "portrait-eye": "Elephants are among the most intelligent animals", "herd-walking": "Family herds travel far for food and water"}
@@ -167,7 +167,7 @@ def collect():
         if slug != "index.html":
             p.setdefault("kind", "post")
         pages.append(p)
-    for sub in ("teachers", "research", "credits"):
+    for sub in ("teachers", "research", "credits", "image-policy"):
         for f in sorted(glob.glob(os.path.join(ROOT, "_src", sub, "*.html"))):
             p = load(f); slug = os.path.basename(f)
             p["out"] = sub + "/" + slug
@@ -268,9 +268,10 @@ def footer(prefix, absolute=False):
             f'<a href="mailto:{FORM_EMAIL}">{FORM_EMAIL}</a> or use our <a href="{base}contact.html">contact form</a>.</p></section>'
             f'<p class="flinks"><a href="{base}terms.html">Terms</a> &middot; <a href="{base}privacy.html">Privacy</a> &middot; '
             f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}disclosure.html">Editorial disclosure</a> &middot; '
+            f'<a href="{base}image-policy/">Image policy</a> &middot; '
             f'<a href="{base}contact.html">Contact</a> &middot; <a href="{base}about.html">About</a> &middot; '
             f'<a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}games/index.html">Games</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a> &middot; <a href="#" data-consent-open>Cookie settings</a></p>'
-            f'<p>Original educational content about elephants. All text is original. Photos are credited; other images are AI-generated illustrations (<a href="{base}about.html#images">about our images</a>).</p></footer>{beacon}{CONSENT_JS}</body></html>')
+            f'<p>Original educational content about elephants. All text is original. Photos are credited; other images are AI-generated illustrations (see our <a href="{base}image-policy/">image policy</a>).</p></footer>{beacon}{CONSENT_JS}</body></html>')
 
 MLA_MON = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]
 
@@ -394,7 +395,7 @@ def render(p, by_out):
     if out == "index.html":
         strip = "".join(f'<figure>{ai_img(k, prefix)}<figcaption>{HOME_CAPS[k]}</figcaption></figure>' for k in HOME_STRIP)
         body = body + (f'<section class="gallery" aria-label="Elephants in the wild"><h2>Elephants up close</h2><div class="strip">{strip}</div>'
-                       f'<p class="meta">{AI_NOTE} <a href="{prefix}about.html#images">About our images</a>.</p></section>')
+                       f'<p class="meta">{AI_NOTE} <a href="{prefix}image-policy/">Source</a>.</p></section>')
     parts.append(body)
     if p.get("faq"):
         qa = "".join(f'<details class="qa"><summary>{esc(q)}</summary><p>{a.replace("@/", prefix)}</p></details>' for q, a in p["faq"])
@@ -429,7 +430,7 @@ def main():
     pages = collect()
     by_out = {p["out"]: p for p in pages}
     os.makedirs(os.path.join(ROOT, "blog"), exist_ok=True)
-    for sub in ("teachers", "research", "credits", "games"):
+    for sub in ("teachers", "research", "credits", "games", "image-policy"):
         os.makedirs(os.path.join(ROOT, sub), exist_ok=True)
     for p in pages:
         d = os.path.dirname(os.path.join(ROOT, p["out"]))
