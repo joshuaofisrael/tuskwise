@@ -82,10 +82,10 @@ The content is general education. Population figures are the latest published es
 - [About TuskWise](https://tuskwise.com/about.html): who runs the site and how content is researched, sourced and corrected
 - [Contact TuskWise](https://tuskwise.com/contact.html): contact form and email address
 - [Disclaimer](https://tuskwise.com/disclaimer.html): accuracy, no professional relationship, ethical travel guidance and advertising disclosure
-- [Editorial disclosure](https://tuskwise.com/disclosure.html): editorial standards, labelled AI-generated images, and advertising kept separate from the writing
+- [Editorial and sourcing](https://tuskwise.com/disclosure.html): editorial standards, sourcing rules, labelled AI-generated images, and advertising kept separate from the writing
 - [Privacy policy](https://tuskwise.com/privacy.html): data controller, contact form, hosting, analytics, and Google AdSense advertising cookies with an opt-out
 - [Terms of Use](https://tuskwise.com/terms.html): terms of use: who you contract with, no professional advice, liability and governing law
 - [TuskWise blog](https://tuskwise.com/blog/): index of answer first articles
 - [Photo credits](https://tuskwise.com/credits/): author, source page and licence for every photograph on TuskWise
-- [Image policy](https://tuskwise.com/image-policy/): how TuskWise labels AI-generated images and credits real, licensed photographs, and where each photo caption's Source link leads
+- [Image policy](https://tuskwise.com/image-policy/): how TuskWise labels AI-generated images and credits real, licensed photographs, and where each photo caption's Source and Image policy links lead
 - [Elephant games](https://tuskwise.com/games/): free original elephant browser games that teach herd memory, diet and species differences

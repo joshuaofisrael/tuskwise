@@ -131,6 +131,21 @@ AI_PAGES = {
 }
 AI_NOTE = "AI-generated illustrative image, not a photograph of a real event."
 
+# Real photo thumbs for related-read cards (pages that use /photos/ heroes, not AI_PAGES).
+PHOTO_THUMBS = {
+    "african-savanna-elephant.html": ("photos/savanna-mother-calf.webp", "African savanna elephant and calf after a mud bath."),
+    "african-forest-elephant.html": ("photos/forest-calf.webp", "African forest elephant calf at a forest clearing."),
+    "asian-elephant.html": ("photos/asian-kui-buri.webp", "Asian elephant mother and calf walking through tall grass."),
+    "african-vs-asian-elephant.html": ("photos/asian-mudumalai.webp", "Asian elephant and calf standing among dry grass and trees."),
+    "anatomy.html": ("photos/trunk-water.webp", "An elephant trunk rising out of water."),
+    "behavior.html": ("photos/calf-mud-play.webp", "A young elephant calf playing in mud with its family."),
+    "habitats.html": ("photos/forest-drinking.webp", "Forest elephant mother and calf drinking at a waterhole."),
+    "ethical-viewing.html": ("photos/calf-splash.webp", "A young elephant spraying water at a waterhole."),
+    "blog/why-do-elephants-have-big-ears.html": ("photos/spraying-water.webp", "An African elephant spraying water over its back."),
+    "blog/how-long-are-elephants-pregnant.html": ("photos/kenya-family.webp", "A calf with adult African elephants at a waterhole."),
+    "blog/how-do-elephant-families-raise-calves.html": ("photos/savanna-mother-calf.webp", "An African elephant mother and calf walking together."),
+}
+
 def ai_img(key, prefix, lazy=True, cls=""):
     lz = ' loading="lazy" decoding="async"' if lazy else ' fetchpriority="high"'
     return (f'<img{cls} src="{prefix}images/{key}.webp" alt="{esc(AI_ALT[key])}" width="1280" height="720"{lz}>')
@@ -138,6 +153,31 @@ def ai_img(key, prefix, lazy=True, cls=""):
 def ai_figure(key, prefix):
     return (f'<figure class="photo ai">{ai_img(key, prefix, lazy=False)}'
             f'<figcaption>{AI_NOTE} <a href="{prefix}image-policy/">Source</a>.</figcaption></figure>')
+
+def related_thumb(out, href, prefix):
+    if out in AI_PAGES:
+        return f'<a class="thumb" href="{href}" tabindex="-1" aria-hidden="true">{ai_img(AI_PAGES[out], prefix)}</a>'
+    if out in PHOTO_THUMBS:
+        src, alt = PHOTO_THUMBS[out]
+        return (f'<a class="thumb" href="{href}" tabindex="-1" aria-hidden="true">'
+                f'<img src="{prefix}{src}" alt="{esc(alt)}" width="960" height="640" loading="lazy" decoding="async"></a>')
+    return ""
+
+def related_block(related_ids, by_out, prefix, limit=4, heading="Keep reading"):
+    items = []
+    for r in related_ids:
+        if len(items) >= limit:
+            break
+        t = by_out.get(r)
+        if not t:
+            continue
+        href = prefix + r
+        thumb = related_thumb(r, href, prefix)
+        items.append(f'<li>{thumb}<div><a href="{href}">{esc(t.get("short", t["h1"]))}</a></div></li>')
+    if not items:
+        return ""
+    return (f'<aside class="related related-thumbs" aria-label="Related reading">'
+            f'<h2>{esc(heading)}</h2><ul>{"".join(items)}</ul></aside>')
 
 HOME_STRIP = ["herd-waterhole", "portrait-eye", "herd-walking"]
 HOME_CAPS = {"herd-waterhole": "Waterholes bring herds together", "portrait-eye": "Elephants are among the most intelligent animals", "herd-walking": "Family herds travel far for food and water"}
@@ -267,7 +307,7 @@ def footer(prefix, absolute=False):
     return (f'<footer>{PRINTS}<section class="contact-us" id="contact-us"><h2>Contact us</h2><p>Questions, corrections or ideas? Email '
             f'<a href="mailto:{FORM_EMAIL}">{FORM_EMAIL}</a> or use our <a href="{base}contact.html">contact form</a>.</p></section>'
             f'<p class="flinks"><a href="{base}terms.html">Terms</a> &middot; <a href="{base}privacy.html">Privacy</a> &middot; '
-            f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}disclosure.html">Editorial disclosure</a> &middot; '
+            f'<a href="{base}disclaimer.html">Disclaimer</a> &middot; <a href="{base}disclosure.html">Editorial &amp; sourcing policy</a> &middot; '
             f'<a href="{base}image-policy/">Image policy</a> &middot; '
             f'<a href="{base}contact.html">Contact</a> &middot; <a href="{base}about.html">About</a> &middot; '
             f'<a href="{base}teachers/index.html">For Teachers</a> &middot; <a href="{base}games/index.html">Games</a> &middot; <a href="{base}credits/index.html">Photo credits</a> &middot; <a href="{base}blog/index.html">Blog</a> &middot; <a href="#" data-consent-open>Cookie settings</a></p>'
@@ -392,6 +432,8 @@ def render(p, by_out):
         posts = sorted([q for q in by_out.values() if q.get("kind") == "post"], key=lambda q: q["published"], reverse=True)
         li = "".join(f'<li class="card">' + (f'<a class="thumb" href="{q["out"][5:]}" tabindex="-1" aria-hidden="true">{ai_img(AI_PAGES[q["out"]], prefix)}</a>' if q["out"] in AI_PAGES else "") + f'<div><h2><a href="{q["out"][5:]}">{esc(q["h1"])}</a></h2><p class="meta">{nice_date(q["published"])}</p><p>{esc(q["description"])}</p></div></li>' for q in posts)
         body = body.replace("{{POSTS}}", f'<ul class="postlist">{li}</ul>')
+    if "{{RELATED_MID}}" in body:
+        body = body.replace("{{RELATED_MID}}", related_block(p.get("related", []), by_out, prefix, limit=4, heading="Related reading"))
     if out == "index.html":
         strip = "".join(f'<figure>{ai_img(k, prefix)}<figcaption>{HOME_CAPS[k]}</figcaption></figure>' for k in HOME_STRIP)
         body = body + (f'<section class="gallery" aria-label="Elephants in the wild"><h2>Elephants up close</h2><div class="strip">{strip}</div>'
@@ -401,12 +443,7 @@ def render(p, by_out):
         qa = "".join(f'<details class="qa"><summary>{esc(q)}</summary><p>{a.replace("@/", prefix)}</p></details>' for q, a in p["faq"])
         parts.append(f'<section class="card" id="faq"><h2>{esc(p.get("faq_title", "Frequently asked questions"))}</h2>{qa}</section>')
     if p.get("related"):
-        items = []
-        for r in p["related"]:
-            t = by_out[r]
-            href = prefix + r
-            items.append(f'<li><a href="{href}">{esc(t.get("short", t["h1"]))}</a></li>')
-        parts.append(f'<aside class="card related"><h2>Keep exploring</h2><ul>{"".join(items)}</ul></aside>')
+        parts.append(related_block(p["related"], by_out, prefix, limit=4, heading="Keep exploring"))
     if p.get("sources"):
         src = "".join(f'<li><a href="{esc(u)}" rel="noopener">{esc(t)}</a></li>' for t, u in p["sources"])
         parts.append(f'<section class="sources"><h2>Sources</h2><ol>{src}</ol></section>')
