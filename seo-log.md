@@ -204,3 +204,10 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Build check: `python3 _build.py` passed (dash check + JSON-LD parse check, both built into the script); no CI/check.py exists for this repo beyond _build.py's own checks.
 - Legal-hold check by hand: no allegations, sensitive data, unclear rights, unverified claims, or advice; page only describes the site's own image practices. No hold.
 - IndexNow: pinged the changed URLs (image-policy/ plus every page whose footer/caption changed) via ./indexnow.sh after merge.
+
+## 2026-11-19: Compliance (image-policy on real photos) + engagement + IUCN refresh
+- Priority move (18 Nov follow-up): every real-photo figcaption now links to both /credits/ and /image-policy/ (kept photographer, Wikimedia file and licence links). AI captions already pointed at /image-policy/.
+- Engagement: related-read renderer now outputs 3 to 4 next-reads with thumbnails; mid-article {{RELATED_MID}} blocks on african-vs-asian-elephant, how-much-do-elephants-eat-and-drink, why-do-elephants-have-big-ears, and how-many-elephants-are-left.
+- Trust/AdSense: disclosure.html expanded to an Editorial and sourcing policy; footer label is now "Editorial & sourcing policy".
+- Refresh: how-many-elephants-are-left.html IUCN status years rechecked against iucnredlist.org on 19 Nov 2026 (forest Critically Endangered reassessed 9 Jan 2026; savanna Endangered assessed 2020 / amended 2022; Asian Endangered assessed 2019 / published 2020). Matching year lines on conservation.html and african-vs-asian-elephant.html.
+- No new article; no link-asset build today; no AdSense reapply. Manual legal check: no hold.
