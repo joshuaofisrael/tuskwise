@@ -211,3 +211,12 @@ impressions; update the population post when the IUCN savanna elephant status re
 - Trust/AdSense: disclosure.html expanded to an Editorial and sourcing policy; footer label is now "Editorial & sourcing policy".
 - Refresh: how-many-elephants-are-left.html IUCN status years rechecked against iucnredlist.org on 19 Nov 2026 (forest Critically Endangered reassessed 9 Jan 2026; savanna Endangered assessed 2020 / amended 2022; Asian Endangered assessed 2019 / published 2020). Matching year lines on conservation.html and african-vs-asian-elephant.html.
 - No new article; no link-asset build today; no AdSense reapply. Manual legal check: no hold.
+
+## 2026-11-20: Compliance captions, editorial policy, quality pass (no new article)
+- Animal site, Shabbat cutoff: no new article. AdSense tag, ads.txt, GA4 and the Cloudflare beacon left in place. No AdSense reapply.
+- Captions: homepage hero photo now links to /credits/ and /image-policy/. Each homepage gallery caption now says the image is AI-generated and links to /image-policy/. The odd AI caption on why-do-male-elephants-leave-the-herd.html now uses the same label and link as the other AI figures.
+- Trust: disclosure.html is explicitly the editorial and sourcing policy (no second URL). About links to it by that name and states the byline is the TuskWise editorial team, with no personal credentials. Article pages now carry that byline.
+- Thin pages: contact and the four game URLs are noindex and out of the sitemap, per the site search rules. They stay linked from the footer.
+- Refresh: do-elephants-really-never-forget.html. McComb 2011 and Foley 2008 reread from the open texts on 20 Nov 2026; the drought section now matches Foley (clan lines, 1958 to 1961, authors say they cannot prove memory). Mid-article and end next-reads with thumbnails, plus a check-another box.
+- Quality pass on the two thinnest fact pages: why-is-elephant-skin-so-wrinkly.html (two wrinkle sizes, Martins 2018 full text and Lillywhite and Stein 1987 abstract, Asian comparison) and how-many-toes-and-toenails-do-elephants-have.html (nail table, source disagreement, date checked). Both gained mid next-reads, in-text links and a check-another box. Anatomy skin and feet sections link to them.
+- Legal-hold check by hand: no named suspect, no allegation, no sanctuary ranking, no veterinary instructions. No hold.
