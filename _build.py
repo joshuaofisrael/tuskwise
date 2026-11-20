@@ -418,9 +418,9 @@ def render(p, by_out):
             if kind == "post":
                 parts.append(f'<p class="meta">Published {nice_date(p["published"])}'
                              + (f' &middot; Updated {nice_date(p["modified"])}' if p.get("modified") and p["modified"] != p["published"] else "")
-                             + f' &middot; Last reviewed {nice_date(reviewed)} &middot; By the {SITE_NAME} team</p>')
+                             + f' &middot; Last reviewed {nice_date(reviewed)} &middot; By the {SITE_NAME} editorial team</p>')
             else:
-                parts.append(f'<p class="meta">Last reviewed {nice_date(reviewed)}</p>')
+                parts.append(f'<p class="meta">Last reviewed {nice_date(reviewed)} &middot; By the {SITE_NAME} editorial team</p>')
         if kind == "learning" and not noindex:
             parts.append(f'<p class="meta">Last reviewed {nice_date(p.get("modified", p["published"]))} &middot; Free, no sign up</p>')
         if p.get("lead"):
@@ -435,9 +435,11 @@ def render(p, by_out):
     if "{{RELATED_MID}}" in body:
         body = body.replace("{{RELATED_MID}}", related_block(p.get("related", []), by_out, prefix, limit=4, heading="Related reading"))
     if out == "index.html":
-        strip = "".join(f'<figure>{ai_img(k, prefix)}<figcaption>{HOME_CAPS[k]}</figcaption></figure>' for k in HOME_STRIP)
-        body = body + (f'<section class="gallery" aria-label="Elephants in the wild"><h2>Elephants up close</h2><div class="strip">{strip}</div>'
-                       f'<p class="meta">{AI_NOTE} <a href="{prefix}image-policy/">Source</a>.</p></section>')
+        strip = "".join(
+            f'<figure>{ai_img(k, prefix)}<figcaption>{esc(HOME_CAPS[k])}. {AI_NOTE} '
+            f'<a href="{prefix}image-policy/">Image policy</a>.</figcaption></figure>'
+            for k in HOME_STRIP)
+        body = body + (f'<section class="gallery" aria-label="Elephants in the wild"><h2>Elephants up close</h2><div class="strip">{strip}</div></section>')
     parts.append(body)
     if p.get("faq"):
         qa = "".join(f'<details class="qa"><summary>{esc(q)}</summary><p>{a.replace("@/", prefix)}</p></details>' for q, a in p["faq"])

@@ -1,3 +1,7 @@
+# TuskWise current state (updated 20 Nov 2026, compliance pass)
+
+- 20 Nov 2026: no new article. Homepage photo captions link to /image-policy/. Disclosure page is the editorial and sourcing policy. Contact and the game pages are noindex. Memory article refreshed; skin-wrinkle and toenail pages filled out. AdSense head tag, ads.txt, GA4 and the Cloudflare beacon are still on every page. See seo-log.md.
+
 # TuskWise current state (updated 18 Nov 2026, image-policy page)
 
 - 18 Nov 2026: new page /image-policy/ live (AI-generated vs real/licensed photos, where each caption's Source link leads). Footer links to it site-wide; all AI-image "Source" links (ai_figure(), homepage gallery, 4 hand-written blog captions) now point to it instead of /about.html#images. See seo-log.md 2026-11-18 entry for full detail.
