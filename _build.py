@@ -399,7 +399,7 @@ def render(p, by_out):
     if p.get("faq"):
         parts.append(ld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in p["faq"]]}))
-    parts.append("<script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5681559774142917' crossorigin='anonymous'></script></head><body>")
+    parts.append("</head><body>")
     parts.append(header(p.get("nav", ""), prefix))
     noads = kind == "learning" or p.get("noads")
     parts.append('<main>' if noads else '<!-- AD SLOT: top banner (reserved, no ad code) --><div class="ad-slot" data-slot="top" hidden></div><main>')
@@ -460,7 +460,7 @@ def render(p, by_out):
 def notfound():
     p = {"out": "404.html", "title": "Page Not Found | TuskWise", "description": "This page wandered off with the herd."}
     b = BASE_PATH
-    return (head(p, "", "", noindex=True, absolute=True) + "<script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5681559774142917' crossorigin='anonymous'></script></head><body>" + header("", "", absolute=True) +
+    return (head(p, "", "", noindex=True, absolute=True) + "</head><body>" + header("", "", absolute=True) +
             '<main><h1>This page wandered off with the herd</h1><p>We could not find that page. Try the '
             f'<a href="{b}">home page</a>, the <a href="{b}african-vs-asian-elephant.html">African vs Asian elephant comparison</a>, '
             f'the <a href="{b}faq.html">elephant FAQ</a> or the <a href="{b}blog/index.html">blog</a>.</p></main>' + footer("", absolute=True))
@@ -495,7 +495,7 @@ def main():
     rb = "User-agent: *\nAllow: /\n\n" + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots) + f"Sitemap: {SITE_URL}sitemap.xml\n"
     open(os.path.join(ROOT, "robots.txt"), "w").write(rb)
     # ads.txt only. Do not inject the AdSense script; the publisher line is the prep step.
-    open(os.path.join(ROOT, "ads.txt"), "w").write("google.com, pub-5681559774142917, DIRECT, f08c47fec0942fa0\n")
+    open(os.path.join(ROOT, "ads.txt"), "w").write("")  # AdSense detached 21 Nov 2026 until the account is approved (see seo-central/site-seo-rules.md). Do not re-add.
     # llms.txt
     groups = {"guides": [], "tools": [], "classroom": [], "blog": [], "optional": []}
     for p in pages:
